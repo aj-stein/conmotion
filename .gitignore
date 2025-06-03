@@ -178,3 +178,5 @@ node_modules
 
 # Ignore Netlify local config for QA site builds
 .netlify
+# Ignore specification doc website builds
+*.html
