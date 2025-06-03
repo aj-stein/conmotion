@@ -2,6 +2,11 @@ name: CD
 
 on:
   push:
+<<<<<<< HEAD
+=======
+    branches:
+      - main
+>>>>>>> b1c6148 (Add submodule for citation styling, set up site build pipeline)
 
 jobs:
   build:
@@ -12,13 +17,20 @@ jobs:
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
         with:
           fetch-depth: 0
+<<<<<<< HEAD
           submodules: true
+=======
+>>>>>>> b1c6148 (Add submodule for citation styling, set up site build pipeline)
       - id: build
         name: Build website
         uses: docker://pandoc/core:3.5
         with:
           args: |
+<<<<<<< HEAD
             docs/architecture.md -o docs/architecture.html --bibliography docs/references.bib --citeproc --csl vendor/csl/apa-6th-edition.csl
+=======
+            docs/architecture.md -o docs/architecture.html --bibliography docs/references.bib --citeproc --csl vendor/csl
+>>>>>>> b1c6148 (Add submodule for citation styling, set up site build pipeline)
       - id: publish
         name: Copy built site to stage for publication
         run: make publish          
