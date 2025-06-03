@@ -17,7 +17,7 @@ build/index.html: docs/architecture.html
 tag:
 	sed -i'' "s|/develop|/$(shell git rev-parse HEAD)|g" docs/architecture.md
 
-publish: tag build/index.html
+publish: build/index.html
 
 clean:
 	rm -f docs/*.html
