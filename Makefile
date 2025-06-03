@@ -1,3 +1,4 @@
+SHELL:=/usr/bin/env bash
 CSL_STYLE := vendor/csl/apa-6th-edition.csl
 SITE_BUILD_DIR := build
 
@@ -13,7 +14,10 @@ build/index.html: docs/architecture.html
 	mkdir -p $(SITE_BUILD_DIR)
 	cp docs/architecture.html $(SITE_BUILD_DIR)/index.html
 
-publish: build/index.html
+tag:
+	sed -i'' "s|/develop|/$(shell git rev-parse HEAD)|g" docs/architecture.md
+
+publish: tag build/index.html
 
 clean:
 	rm -f docs/*.html
@@ -21,4 +25,4 @@ clean:
 
 .PHONY: all clean publish
 
-all: clean $(CSL_STYLE) publish
+all: clean $(CSL_STYLE) publish tag
