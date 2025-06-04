@@ -22,13 +22,13 @@ Despite these essential characteristics and the proliferation of many differenti
 
 This specification specifies an architecture for a transparency service for currently monitoring the security properties of one or more cloud infrastructures by multiple parties internal or external to the provider. Previously, experts drafted transparency service architectures for monitoring the lifecycle of TLS certificates for encrypted communications on the World Wide Web [@laurie21] and another for heterogenous data for software supply chain use cases [@scitt25]. An industry consortium deployed an emerging de-facto standard, Sigstore and Rekor, for monitoring published open-source software used industry-wide [@rekor]. Google's Android operating system developers deployed their own to verify the legitimacy of all compiled programs in their operating system releases [@androidtlog]. Although they represent similar use cases, the uniqueness of cloud infrastructure requires different design and implementation tradeoffs. Therefore, this specification will inventory use cases; describe the foundation and enhancements to the baseline transparency service architecture; the actors in a mutual monitoring network and their roles; specialized components of the architecture; and required protocols for actors to execute their roles with the architecture for given use cases.
 
+## Use Cases
+
 ## Architecture
 
-### Use Cases
+### Components
 
 ### Actors and Roles
-
-### Components
 
 ### Flows
 
