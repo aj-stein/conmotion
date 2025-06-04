@@ -18,4 +18,6 @@ Internal or external stakeholders of a cloud infrastructure may want to publish 
 
 ## Terminology
 
+## Appendix
 
+### References
