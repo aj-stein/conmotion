@@ -1,13 +1,14 @@
 SHELL:=/usr/bin/env bash
 CSL_STYLE := vendor/csl/apa-6th-edition.csl
 SITE_BUILD_DIR := build
+REFS_FILE := docs/references.bib
 
 $(CSL_STYLE):
 	git submodule update --init --recursive
 
-%.html: %.md
+%.html: %.md $(REFS_FILE)
 	pandoc $< -o $@ \
-		--bibliography docs/references.bib \
+		--bibliography $(REFS_FILE) \
 		--citeproc \
 		--csl $(CSL_STYLE)
 
