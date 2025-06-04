@@ -2,7 +2,7 @@
 
 **Author:** [A.J. Stein](mailto:astein38@gatech.edu)
 <br/>
-**Version:** [/develop](https://github.com/aj-stein/conmotion/tree///develop)
+**Version:** [/develop](https://github.com/aj-stein/conmotion/tree//develop)
 <br/>
 **Modified at:** 2025-06-03
 
