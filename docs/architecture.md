@@ -1,6 +1,12 @@
 # An Architecture for Mutual Monitoring of Cloud Infrastructures
 
-_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree/develop) generated this copy of the specification, supporting documentation, and related code._
+**Author:** [A.J. Stein](mailto:astein38@gatech.edu)
+<br/>
+**Version:** [/develop](https://github.com/aj-stein/conmotion/tree///develop)
+<br/>
+**Modified at:** 2025-06-03
+
+_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree/3e4c0ade2100d2d11c024cb06664ce39a67633ae) generated this copy of the specification, supporting documentation, and related code._
 
 ## Abstract
 

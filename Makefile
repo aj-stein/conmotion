@@ -7,7 +7,8 @@ $(CSL_STYLE):
 
 %.html: %.md
 	pandoc $< -o $@ \
-		--bibliography docs/references.bib --citeproc \
+		--bibliography docs/references.bib \
+		--citeproc \
 		--csl $(CSL_STYLE)
 
 build/index.html: docs/architecture.html
@@ -15,7 +16,7 @@ build/index.html: docs/architecture.html
 	cp docs/architecture.html $(SITE_BUILD_DIR)/index.html
 
 tag:
-	sed -i'' "s|/develop|/$(shell git rev-parse HEAD)|g" docs/architecture.md
+	sed -i'' "s|/develop|$(shell git rev-parse HEAD)|g" docs/architecture.md
 
 publish: build/index.html
 
