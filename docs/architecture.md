@@ -1,5 +1,7 @@
 # An Architecture for Mutual Monitoring of Cloud Infrastructures
 
+_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree/develop) generated this copy of the specification, supporting documentation, and related code._
+
 ## Abstract
 
 The transparency of cloud infrastructures is a systemic challenge to industry.
@@ -16,4 +18,4 @@ Internal or external stakeholders of a cloud infrastructure may want to publish 
 
 ## Terminology
 
-_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree/develop) generated this copy of the specification, supporting documentation, and related code._
+
