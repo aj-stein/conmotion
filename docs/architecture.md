@@ -30,6 +30,8 @@ This specification specifies an architecture for a transparency service for curr
 
 ### Components
 
+### Flows
+
 ## Terminology
 
 ## Appendix
