@@ -49,7 +49,7 @@ jobs:
     if: github.ref != 'refs/heads/main'
     needs: build
     permissions:
-      id-token: write
+      deployments: write
     environment:
       name: netlify
     runs-on: ubuntu-24.04
