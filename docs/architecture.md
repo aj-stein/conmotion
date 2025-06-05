@@ -32,6 +32,8 @@ Inventory management of systems that comprise components of a cloud infrastructu
 
 #### Cloud Infrastructure Provider
 
+A cloud infrastructure provider uses bespoke asset management system(s) predominantly for internal use. The provider's staff can use a transparency service as a high-fidelity replica of the asset management system(s) data, tracking changes over time, or as the canonical source of inventory. The provider's staff will integrate inventory management automation to create new entries into the append-only log of the transparency service, adding digitally signed records one-by-one for the provisioning and deprovisioning of all systems in the infrastructure. The most recent record embeds a linkage by hash to the previous record in the append-only log. Staff can check the most recent record to now the latest changes or "replay the log" with the fully exported data of the append-only log to understand all changes over time and compose a realistic model of the services monitored. 
+
 #### Cloud Infrastructure Customer
 
 #### Auditor
