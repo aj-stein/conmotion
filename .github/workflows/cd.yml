@@ -64,7 +64,7 @@ jobs:
         name: Deploy QA build to Netlify
         uses: South-Paw/action-netlify-cli@0e5db3233380b841d6e0dfd3b1eef306c6c79735
         with:
-          args: deploy --json --dir './build --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}'
+          args: deploy --json --dir './build' --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
