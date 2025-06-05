@@ -2,8 +2,6 @@ name: CD
 
 on:
   push:
-    branches:
-      - main
 
 jobs:
   build:
@@ -41,6 +39,22 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
     steps:
-      - id: deployment
+      - id: deployment_prod
+        if: github.ref == 'refs/heads/main'
         name: Deploy to GitHub Pages
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
+      - id: deployment_qa
+        name: Deploy QA build to Netlify
+        if: github.ref != 'refs/heads/main'
+        uses: South-Paw/action-netlify-cli@0e5db3233380b841d6e0dfd3b1eef306c6c79735
+        with:
+          args: deploy --json --dir './build --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}'
+        env:
+          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+      - name: Generate URL Preview
+        id: url_preview
+        if: github.ref != 'refs/heads/main'
+        run: |
+          NETLIFY_PREVIEW_URL=$(jq -r '.deploy_url' deploy_output.json)
+          echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
