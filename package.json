@@ -1,0 +1,28 @@
+{
+  "name": "conmotion_spec",
+  "version": "1.0.0-alpha",
+  "description": "Code to generate a public specification for the Conmotion transparency service",
+  "main": "index.js",
+  "engines": {
+    "node": ">=22"
+  },
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/aj-stein/conmotion.git"
+  },
+  "author": "A.J. Stein <astein38@gatech.edu>",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/aj-stein/conmotion/issues"
+  },
+  "homepage": "https://github.com/aj-stein/conmotion#readme",
+  "dependencies": {
+    "netlify-cli": "^22.1.1"
+  }
+}

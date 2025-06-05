@@ -60,14 +60,22 @@ jobs:
         with:
           step: start
           env: netlify
+      - id: setup
+        name: Setup NodeJS and dependencies
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: 'package.json'
+          cache: 'npm'
       - id: netlify
         name: Deploy QA build to Netlify
-        uses: South-Paw/action-netlify-cli@0e5db3233380b841d6e0dfd3b1eef306c6c79735
-        with:
-          args: deploy --json --dir './build' --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}'
-        env:
-          NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
-          NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
+        run: |
+          npx netlify-cli deploy \
+            --dir './build' \
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
+            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
+            --json >> deploy_output.json
+          echo "deploy_url=$(jq -r '.deploy_url' deploy_output.json)" >> $GITHUB_OUTPUT
       - id: deployment_finish
         name: Finish deployment
         uses: bobheadxi/deployments@648679e8e4915b27893bd7dbc35cb504dc915bc8
@@ -77,4 +85,4 @@ jobs:
           step: finish
           status: ${{ job.status }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-          env_url: ${{ fromJson(steps.netlify.outputs.NETLIFY_OUTPUT).url }}
+          env_url: ${{ steps.netlify.outputs.deploy_url }}
