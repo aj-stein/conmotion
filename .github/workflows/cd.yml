@@ -28,8 +28,9 @@ jobs:
         with:
           path: build
 
-  deploy:
+  deploy_prod:
     name: Deploy to GitHub Pages
+    if: github.ref == 'refs/heads/main'
     needs: build
     permissions:
       pages: write
@@ -39,22 +40,41 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     runs-on: ubuntu-24.04
     steps:
-      - id: deployment_prod
-        if: github.ref == 'refs/heads/main'
+      - id: deployment
         name: Deploy to GitHub Pages
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
-      - id: deployment_qa
+  
+  deploy_qa:
+    name: Deploy to Netlify
+    if: github.ref != 'refs/heads/main'
+    needs: build
+    permissions:
+      id-token: write
+    environment:
+      name: netlify
+    runs-on: ubuntu-24.04
+    steps:
+      - id: deployment
+        name: Start deployment
+        uses: bobheadxi/deployments@648679e8e4915b27893bd7dbc35cb504dc915bc8
+        with:
+          step: start
+          env: netlify
+      - id: netlify
         name: Deploy QA build to Netlify
-        if: github.ref != 'refs/heads/main'
         uses: South-Paw/action-netlify-cli@0e5db3233380b841d6e0dfd3b1eef306c6c79735
         with:
           args: deploy --json --dir './build --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}'
         env:
           NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
           NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}
-      - name: Generate URL Preview
-        id: url_preview
-        if: github.ref != 'refs/heads/main'
-        run: |
-          NETLIFY_PREVIEW_URL=$(jq -r '.deploy_url' deploy_output.json)
-          echo "NETLIFY_PREVIEW_URL=$NETLIFY_PREVIEW_URL" >> "$GITHUB_OUTPUT"
+      - id: deployment_finish
+        name: Finish deployment
+        uses: bobheadxi/deployments@648679e8e4915b27893bd7dbc35cb504dc915bc8
+        if: always()
+        with:
+          env: ${{ steps.deployment.outputs.env }}
+          step: finish
+          status: ${{ job.status }}
+          deployment_id: ${{ steps.deployment.outputs.deployment_id }}
+          env_url: ${{ fromJson(steps.netlify.outputs.NETLIFY_OUTPUT).url }}
