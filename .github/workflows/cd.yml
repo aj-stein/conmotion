@@ -120,7 +120,6 @@ jobs:
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --dir=build \
             --context=branch-deploy \
-            --alias=${{ github.head_ref || github.ref_name }} \            
             --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
             --json >> deploy_output.json
           echo "deploy_url=$(jq -r '.deploy_url' deploy_output.json)" >> $GITHUB_OUTPUT
