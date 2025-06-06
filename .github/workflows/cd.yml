@@ -58,6 +58,9 @@ jobs:
       deployments: write
     environment:
       name: netlify
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}      
     runs-on: ubuntu-24.04
     steps:
       - id: deployment
@@ -68,9 +71,6 @@ jobs:
           env: netlify
       - id: checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          fetch-depth: 0
-          submodules: true       
       - id: setup_node
         name: Setup NodeJS
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
@@ -96,8 +96,6 @@ jobs:
         if: github.ref == 'refs/heads/develop'
         run: |
           npx netlify-cli deploy \
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            --site ${{ secrets.NETLIFY_SITE_ID }} \
             --dir=build \
             --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
             --prod \
@@ -107,9 +105,7 @@ jobs:
         name: Deploy QA build to Netlify (PR branch)
         if: github.ref != 'refs/heads/develop'
         run: |
-          npx netlify-cli deploy \         
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            --site ${{ secrets.NETLIFY_SITE_ID }} \
+          npx netlify-cli deploy \
             --dir=build \
             --context=branch-deploy \
             --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
