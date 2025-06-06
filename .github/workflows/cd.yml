@@ -109,7 +109,7 @@ jobs:
         run: |
           npx netlify-cli deploy \
             --dir=build \
-            --branch=${{ github.head_ref || github.ref_name }}' \            
+            --branch=${{ github.head_ref || github.ref_name }} \            
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
