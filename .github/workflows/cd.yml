@@ -85,9 +85,10 @@ jobs:
         uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: website_build
-          path: build
-      - id: debug_files
-        run: find '.'    
+          path: ${{ runner.tmp }}
+      - id: download_extract
+        run: |
+          tar -xvf ${{ runner.temp }}/artifact.tar -C ${{ github.workspace }}/build
       - id: netlify_dev
         name: Deploy QA build to Netlify (develop branch)
         if: github.ref == 'refs/heads/develop'
