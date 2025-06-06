@@ -75,7 +75,7 @@ jobs:
         name: Setup NodeJS
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: '.tool-versions'
+          node-version-file: '.tool-versions'
           cache: 'npm'
       - id: packages_node
         name: Install NodeJS packages
