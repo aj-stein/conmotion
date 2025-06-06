@@ -31,10 +31,12 @@ jobs:
         with:
           include-hidden-files: true
           path: |
-            .tool-versions
-            package.json
-            package-lock.json
-            build/
+            ${{ github.workspace }}
+            !.github
+            !.netlify
+            !assets
+            !node_modules
+            !vendor
 
   deploy_prod:
     name: Deploy to GitHub Pages
