@@ -60,23 +60,17 @@ jobs:
       name: netlify
     runs-on: ubuntu-24.04
     steps:
-      - id: checkout
-        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          fetch-depth: 0
-          submodules: true
-      - id: download
-        name: Download website build
-        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
-        with:
-          name: website_build
-          path: build 
       - id: deployment
         name: Start deployment
         uses: bobheadxi/deployments@648679e8e4915b27893bd7dbc35cb504dc915bc8
         with:
           step: start
           env: netlify
+      - id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          submodules: true       
       - id: setup_node
         name: Setup NodeJS
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
@@ -86,6 +80,12 @@ jobs:
       - id: packages_node
         name: Install NodeJS packages
         run: npm ci
+      - id: download
+        name: Download website build
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: website_build
+          path: build        
       - id: netlify
         name: Deploy QA build to Netlify
         run: |
