@@ -86,12 +86,24 @@ jobs:
         with:
           name: website_build
           path: build        
-      - id: netlify
-        name: Deploy QA build to Netlify
+      - id: netlify_dev
+        name: Deploy QA build to Netlify (develop branch)
+        if: github.ref == 'refs/heads/develop'
         run: |
           npx netlify-cli deploy \
-            --dir build \
-            --no-build \
+            --dir './build' \
+            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
+            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
+            --prod \
+            --json >> deploy_output.json
+          echo "deploy_url=$(jq -r '.deploy_url' deploy_output.json)" >> $GITHUB_OUTPUT
+      - id: netlify_pr
+        name: Deploy QA build to Netlify (PR branch)
+        if: github.ref != 'refs/heads/develop'
+        run: |
+          npx netlify-cli deploy \
+            --dir './build' \
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
             --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
@@ -106,4 +118,4 @@ jobs:
           step: finish
           status: ${{ job.status }}
           deployment_id: ${{ steps.deployment.outputs.deployment_id }}
-          env_url: ${{ steps.netlify.outputs.deploy_url }}
+          env_url: ${{ steps.netlify_dev.outputs.deploy_url || steps.netlify_pr.outputs.deploy_url }}
