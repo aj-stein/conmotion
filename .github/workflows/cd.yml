@@ -67,7 +67,7 @@ jobs:
         name: Setup NodeJS and dependencies
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version-file: '.tool-versions'
+          node-version-file: '${{ github.workspace }}/.tool-versions'
           cache: 'npm'
       - id: netlify
         name: Deploy QA build to Netlify
