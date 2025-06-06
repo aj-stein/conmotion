@@ -29,7 +29,11 @@ jobs:
         name: Upload Build Artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
         with:
-          path: build
+          path: |
+            .tool-versions
+            package.json
+            package-lock.json
+            build
 
   deploy_prod:
     name: Deploy to GitHub Pages
@@ -67,9 +71,8 @@ jobs:
         name: Setup NodeJS
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
-          node-version: 22.16.0
+          node-version: '.tool-versions'
           cache: 'npm'
-          cache-dependency-path: '**/package-lock.json'
       - id: packages_node
         name: Install NodeJS packages
         run: npm ci
