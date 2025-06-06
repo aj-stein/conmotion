@@ -63,12 +63,16 @@ jobs:
         with:
           step: start
           env: netlify
-      - id: setup
-        name: Setup NodeJS and dependencies
+      - id: setup_node
+        name: Setup NodeJS
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
         with:
           node-version: 22.16.0
           cache: 'npm'
+          cache-dependency-path: '**/package-lock.json'
+      - id: packages_node
+        name: Install NodeJS packages
+        run: npm ci
       - id: netlify
         name: Deploy QA build to Netlify
         run: |
