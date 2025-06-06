@@ -29,14 +29,8 @@ jobs:
         name: Upload Build Artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
         with:
-          include-hidden-files: true
-          path: |
-            ${{ github.workspace }}
-            !.github
-            !.netlify
-            !assets
-            !node_modules
-            !vendor
+          name: website_build
+          path: build
 
   deploy_prod:
     name: Deploy to GitHub Pages
@@ -53,6 +47,8 @@ jobs:
       - id: deployment
         name: Deploy to GitHub Pages
         uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
+        with:
+          artifact_name: website_build
   
   deploy_qa:
     name: Deploy to Netlify
@@ -64,6 +60,17 @@ jobs:
       name: netlify
     runs-on: ubuntu-24.04
     steps:
+      - id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
+          submodules: true
+      - id: download
+        name: Download website build
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
+        with:
+          name: website_build
+          path: build 
       - id: deployment
         name: Start deployment
         uses: bobheadxi/deployments@648679e8e4915b27893bd7dbc35cb504dc915bc8
