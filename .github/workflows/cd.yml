@@ -104,9 +104,9 @@ jobs:
         if: github.ref == 'refs/heads/develop'
         run: |
           npx netlify-cli deploy \
-            --dir=build \
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --dir=build \
             --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
             --prod \
             --json >> deploy_output.json
@@ -115,11 +115,11 @@ jobs:
         name: Deploy QA build to Netlify (PR branch)
         if: github.ref != 'refs/heads/develop'
         run: |
-          npx netlify-cli deploy \
-            --dir=build \
-            --alias=${{ github.head_ref || github.ref_name }} \            
+          npx netlify-cli deploy \         
             --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
             --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --dir=build \
+            --alias=${{ github.head_ref || github.ref_name }} \            
             --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
             --json >> deploy_output.json
           echo "deploy_url=$(jq -r '.deploy_url' deploy_output.json)" >> $GITHUB_OUTPUT
