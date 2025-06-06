@@ -3,9 +3,6 @@
   "version": "1.0.0-alpha",
   "description": "Code to generate a public specification for the Conmotion transparency service",
   "main": "index.js",
-  "engines": {
-    "node": ">=22"
-  },
   "directories": {
     "doc": "docs"
   },

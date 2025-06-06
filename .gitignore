@@ -175,3 +175,6 @@ cython_debug/
 
 # Ignore NPM installation for QA site builds
 node_modules
+
+# Ignore Netlify local config for QA site builds
+.netlify
