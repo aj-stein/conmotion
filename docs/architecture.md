@@ -64,7 +64,21 @@ An auditor, accountable to the cloud infrastructure provider, their customer, or
 
 The mutual monitoring architecture specializes the architecture of a Transparency Service as defined by the IETF SCITT Working Group [@scitt25]. This architecture includes a Transparency Service; Adjacent Services, custom services deployed adjacently to the Transparency Service for log search and storage; and Relying Parties, Transparency Service clients that serve specialized use cases for processing the content of each record in the Append-only Log.
 
+Given [the above use cases](#use-cases), a cloud infrastructure provider MAY deploy these components with logical relationships like those in the diagram below.
+
+![](./assets/arch_provider-only.png)
+
 ### Components
+
+#### Transparency Service
+
+##### Registration Policy Engine
+
+##### Append-Only Log
+
+##### Adjacent Service for Storage
+
+##### Adjacent Service for Search
 
 ### Actors and Roles
 
@@ -73,6 +87,8 @@ The mutual monitoring architecture specializes the architecture of a Transparenc
 ## Terminology
 
 - [Transparency Service]{#transparency-service}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.34.1) [@scitt25].
+
+- [Relying Party]{#relying-party}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.26.1) [@scitt25].
 
 ## Appendix
 
