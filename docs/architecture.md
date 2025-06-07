@@ -62,7 +62,7 @@ An auditor, accountable to the cloud infrastructure provider, their customer, or
 
 ## Architecture
 
-The mutual monitoring architecture specializes the architecture of a Transparency Service as defined by the IETF SCITT Working Group [@scitt25]. This architecture includes a Transparency Service; Adjacent Services, custom services deployed adjacently to the Transparency Service for log search and storage; and Relying Parties, Transparency Log clients that serve specialized use cases for processing the content of each record in the Append-only Log.
+The mutual monitoring architecture specializes the architecture of a Transparency Service as defined by the IETF SCITT Working Group [@scitt25]. This architecture includes a Transparency Service; Adjacent Services, custom services deployed adjacently to the Transparency Service for log search and storage; and Relying Parties, Transparency Service clients that serve specialized use cases for processing the content of each record in the Append-only Log.
 
 ### Components
 
