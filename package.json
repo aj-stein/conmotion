@@ -20,6 +20,7 @@
   },
   "homepage": "https://github.com/aj-stein/conmotion#readme",
   "dependencies": {
+    "@mermaid-js/mermaid-cli": "^11.4.2",
     "netlify-cli": "^22.1.1"
   }
 }
