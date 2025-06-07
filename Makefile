@@ -1,10 +1,14 @@
 SHELL:=/usr/bin/env bash
+NETFLIFY_EXE := node_modules/.bin/netlify
 CSL_STYLE := vendor/csl/apa-6th-edition.csl
 SITE_BUILD_DIR := build
 REFS_FILE := docs/references.bib
 
 $(CSL_STYLE):
 	git submodule update --init --recursive
+
+$(NETLIFY_BIN):
+	npm ci
 
 %.html: %.md $(REFS_FILE)
 	pandoc $< -o $@ \
@@ -27,4 +31,4 @@ clean:
 
 .PHONY: all clean publish
 
-all: clean $(CSL_STYLE) publish tag
+all: clean $(CSL_STYLE) tag publish
