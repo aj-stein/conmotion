@@ -58,6 +58,9 @@ jobs:
       deployments: write
     environment:
       name: netlify
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}      
     runs-on: ubuntu-24.04
     steps:
       - id: deployment
@@ -68,9 +71,6 @@ jobs:
           env: netlify
       - id: checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          fetch-depth: 0
-          submodules: true       
       - id: setup_node
         name: Setup NodeJS
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
@@ -97,8 +97,6 @@ jobs:
         run: |
           npx netlify-cli deploy \
             --dir=build \
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            --site ${{ secrets.NETLIFY_SITE_ID }} \
             --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
             --prod \
             --json >> deploy_output.json
@@ -109,9 +107,8 @@ jobs:
         run: |
           npx netlify-cli deploy \
             --dir=build \
-            --branch=${{ github.head_ref || github.ref_name }} \            
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --context=branch-deploy \
+            --alias=${{ github.head_ref || github.ref_name }} \
             --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
             --json >> deploy_output.json
           echo "deploy_url=$(jq -r '.deploy_url' deploy_output.json)" >> $GITHUB_OUTPUT
