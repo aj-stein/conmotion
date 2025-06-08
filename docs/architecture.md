@@ -8,7 +8,7 @@
 
 _The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree//develop) generated this copy of the specification, supporting documentation, and related code. You can [click this link](./architecture.pdf) to download this specification as a PDF document._
 
-_NOTE: This specification capitalizes certain words or phrases with common meaning when this specification gives them a precise normative definition. See the [Terminology section](#terminology) for a complete listing of these terms._
+_NOTE: This specification conforms to IETF's best practice [in RFC 2119](https://datatracker.ietf.org/doc/rfc2119/) to capitalize all letters in key words to indicate requirement levels [@rfc2119]. This specification also capitalizes certain words or phrases with common meaning when this specification gives them a precise normative definition. See the [Terminology section](#terminology) for a complete listing of these terms._
 
 ## Abstract
 
