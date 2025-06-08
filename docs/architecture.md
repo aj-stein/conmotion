@@ -66,7 +66,7 @@ The mutual monitoring architecture specializes the architecture of a Transparenc
 
 Given [the above use cases](#use-cases), a cloud infrastructure provider MAY deploy these components with logical relationships like those in the diagram below.
 
-![](./assets/arch_provider-only.png)
+![](./arch_provider-only.png)
 
 ### Components
 
