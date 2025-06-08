@@ -36,18 +36,23 @@ jobs:
         with:
           chrome-version: 137.0.7151.68
           install-chromedriver: true
-      - id: prepare
-        name: Prep content and render assets
-        run: make tag render
+      - id: tag
+        name: Prep and tag spec before build
+        run: |
+          make tag
+      - id: render
+        name: Render assets
+        run: |
+          make render  MERMAID_EXE_WRAPPER="aa-exec --profile=chrome"
       - id: build
         name: Build website
-        uses: docker://ghcr.io/aj-stein/pandoc/latex@sha256:9b8ea41f5ec9e54de96222837fa4fd67e7f5389c46a3166cc88792d49051227b
+        uses: docker://ghcr.io/aj-stein/pandoc/latex@sha256:73e426028ee2b197a9f8bf0a63b50c10b361436d64165d5a0c62e7d630bc94d7
         with:
           entrypoint: make
-          args: publish MERMAID_EXE_WRAPPER="aa-exec --profile=chrome"
+          args: publish
       - id: convert
         name: Convert website to PDF
-        uses: docker://ghcr.io/aj-stein/pandoc/latex@sha256:9b8ea41f5ec9e54de96222837fa4fd67e7f5389c46a3166cc88792d49051227b
+        uses: docker://ghcr.io/aj-stein/pandoc/latex@sha256:73e426028ee2b197a9f8bf0a63b50c10b361436d64165d5a0c62e7d630bc94d7
         with:
           entrypoint: make
           args: convert
