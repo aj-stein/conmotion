@@ -22,8 +22,17 @@ $(MERMAID_EXE):
 
 dependencies: $(CITATION_STYLE) $(NETLIFY_EXE) $(MERMAID_EXE)
 
+$(SITE_BUILD_DIR)/%.pdf: $(SITE_SRC_DIR)/%.md $(REFS_FILE)
+	mkdir -p $(SITE_BUILD_DIR)
+	pandoc $< -o $@ \
+		--resource-path $(SITE_BUILD_DIR) \
+		--bibliography $(REFS_FILE) \
+		--citeproc \
+		--csl $(CITATION_STYLE)
+
 $(SITE_BUILD_DIR)/%.html: $(SITE_SRC_DIR)/%.md $(DIAGRAM_OUT_FILES) $(REFS_FILE)
 	pandoc $< -o $@ \
+		--resource-path $(SITE_BUILD_DIR) \
 		--bibliography $(REFS_FILE) \
 		--citeproc \
 		--csl $(CITATION_STYLE)
@@ -41,7 +50,7 @@ tag:
 
 render: $(DIAGRAM_OUT_FILES)
 
-publish: $(WEBPAGE_OUT_FILES) $(DIAGRAM_OUT_FILES)
+publish: $(DIAGRAM_OUT_FILES) $(WEBPAGE_OUT_FILES) build/architecture.pdf
 
 clean:
 	rm -rf $(SITE_BUILD_DIR)
