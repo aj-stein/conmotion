@@ -40,11 +40,11 @@ jobs:
         name: Prep content and render assets
         run: make tag render
       - id: build
-        name: Convert website to PDF
+        name: Build website
         uses: docker://ghcr.io/aj-stein/pandoc/latex@sha256:9b8ea41f5ec9e54de96222837fa4fd67e7f5389c46a3166cc88792d49051227b
         with:
           entrypoint: make
-          args: publish
+          args: publish MERMAID_EXE_WRAPPER="aa-exec --profile=chrome"
       - id: convert
         name: Convert website to PDF
         uses: docker://ghcr.io/aj-stein/pandoc/latex@sha256:9b8ea41f5ec9e54de96222837fa4fd67e7f5389c46a3166cc88792d49051227b
