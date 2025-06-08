@@ -50,12 +50,14 @@ tag:
 
 render: $(DIAGRAM_OUT_FILES)
 
-publish: $(DIAGRAM_OUT_FILES) $(WEBPAGE_OUT_FILES) build/architecture.pdf
+publish: $(WEBPAGE_OUT_FILES)
+
+convert: $(SITE_BUILD_DIR)/architecture.pdf
 
 clean:
 	rm -rf $(SITE_BUILD_DIR)
 
 
-.PHONY: clean dependencies tag render publish all
+.PHONY: clean dependencies tag render publish convert all
 
-all: clean dependencies tag render publish
+all: clean dependencies tag render publish convert
