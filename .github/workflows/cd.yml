@@ -47,7 +47,7 @@ jobs:
             docs/architecture.md -o docs/architecture.html --bibliography docs/references.bib --citeproc --csl vendor/csl/apa-6th-edition.csl
       - id: publish
         name: Copy built site to stage for publication
-        run: make publish       
+        run: make publish MERMAID_EXE_WRAPPER="aa-exec --profile=chrome"
       - id: upload
         name: Upload Build Artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
