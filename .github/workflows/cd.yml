@@ -36,12 +36,6 @@ jobs:
         with:
           chrome-version: 137.0.7151.68
           install-chromedriver: true
-      - id: tag
-        name: Tag specification before building site
-        run: make tag
-      - id: render
-        name: Render diagram images before building site pages
-        run: make render MERMAID_EXE_WRAPPER="aa-exec --profile=chrome"
       - id: setup_pandoc
         name: Install pandoc to build website
         uses: pandoc/actions/setup@54978b2465cef52a89f0e50a71d1397b1c25b469
@@ -49,7 +43,7 @@ jobs:
           version: 3.7.0.2
       - id: build
         name: Build website
-        run: make publish
+        run: make all MERMAID_EXE_WRAPPER="aa-exec --profile=chrome"
       - id: upload
         name: Upload Build Artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
