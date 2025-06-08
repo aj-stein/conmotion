@@ -4,7 +4,7 @@
 <br/>
 **Version:** [/develop](https://github.com/aj-stein/conmotion/tree//develop)
 <br/>
-**Modified at:** 2025-06-07
+**Modified at:** 2025-06-08
 
 _The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree//develop) generated this copy of the specification, supporting documentation, and related code. You can [click this link](./architecture.pdf) to download this specification as a PDF document._
 
