@@ -39,6 +39,9 @@ jobs:
       - id: tag
         name: Tag specification before building site
         run: make tag
+      - id: render
+        name: Render diagram images before building site pages
+        run: make render
       - id: build
         name: Build website
         uses: docker://pandoc/core@sha256:a115371a3f4b3f93233ef894f31eb8c4235fbcee60c64846f1a61c1c970d338c

@@ -39,12 +39,14 @@ $(SITE_BUILD_DIR)/%.png: $(SITE_SRC_DIR)/%.mmd $(MERMAID_EXE)
 tag:
 	sed -i'' "s|/develop|$(shell git rev-parse HEAD)|g" $(SITE_SRC_DIR)/architecture.md
 
+render: $(DIAGRAM_OUT_FILES)
+
 publish: $(WEBPAGE_OUT_FILES) $(DIAGRAM_OUT_FILES)
 
 clean:
 	rm -rf $(SITE_BUILD_DIR)
 
 
-.PHONY: all clean publish
+.PHONY: clean dependencies tag render publish all
 
-all: clean dependencies tag publish
+all: clean dependencies tag render publish
