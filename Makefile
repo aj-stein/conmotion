@@ -25,6 +25,7 @@ dependencies: $(CITATION_STYLE) $(NETLIFY_EXE) $(MERMAID_EXE)
 $(SITE_BUILD_DIR)/%.pdf: $(SITE_SRC_DIR)/%.md $(REFS_FILE)
 	mkdir -p $(SITE_BUILD_DIR)
 	pandoc $< -o $@ \
+		-M colorlinks \
 		--resource-path $(SITE_BUILD_DIR) \
 		--bibliography $(REFS_FILE) \
 		--citeproc \
