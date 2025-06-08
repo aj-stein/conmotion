@@ -44,8 +44,6 @@ publish: $(WEBPAGE_OUT_FILES) $(DIAGRAM_OUT_FILES)
 clean:
 	rm -rf $(SITE_BUILD_DIR)
 
-debug:
-	@echo $(WEBPAGE_OUT_FILES)
 
 .PHONY: all clean publish
 
