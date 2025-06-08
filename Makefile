@@ -30,7 +30,7 @@ $(SITE_BUILD_DIR)/%.html: $(SITE_SRC_DIR)/%.md $(DIAGRAM_OUT_FILES) $(REFS_FILE)
 $(SITE_BUILD_DIR)/%.png: $(SITE_SRC_DIR)/%.mmd $(MERMAID_EXE)
 	mkdir -p $(SITE_BUILD_DIR)
 	npx -p @mermaid-js/mermaid-cli \
-		mmdc -i $< -o $@
+		mmdc -i $< -o $@ -b transparent
 
 tag:
 	sed -i'' "s|/develop|$(shell git rev-parse HEAD)|g" $(SITE_SRC_DIR)/architecture.md
