@@ -38,7 +38,7 @@ jobs:
           install-chromedriver: true
       - id: build
         name: Build website and PDF with pandoc
-        uses: ghcr.io/aj-stein/pandoc/latex@sha256:9b8ea41f5ec9e54de96222837fa4fd67e7f5389c46a3166cc88792d49051227b
+        uses: docker://ghcr.io/aj-stein/pandoc/latex@sha256:9b8ea41f5ec9e54de96222837fa4fd67e7f5389c46a3166cc88792d49051227b
         with:
           entrypoint: /bin/sh
           args: -c make all MERMAID_EXE_WRAPPER="aa-exec --profile=chrome"
