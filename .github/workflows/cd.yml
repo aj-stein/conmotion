@@ -41,7 +41,7 @@ jobs:
         run: make tag
       - id: render
         name: Render diagram images before building site pages
-        run: make render
+        run: make render MERMAID_EXE_WRAPPER="aa-exec --profile=chrome"
       - id: build
         name: Build website
         uses: docker://pandoc/core@sha256:a115371a3f4b3f93233ef894f31eb8c4235fbcee60c64846f1a61c1c970d338c
@@ -50,7 +50,7 @@ jobs:
             docs/architecture.md -o docs/architecture.html --bibliography docs/references.bib --citeproc --csl vendor/csl/apa-6th-edition.csl
       - id: publish
         name: Copy built site to stage for publication
-        run: make publish MERMAID_EXE_WRAPPER="aa-exec --profile=chrome"
+        run: make publish
       - id: upload
         name: Upload Build Artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
