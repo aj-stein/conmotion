@@ -82,7 +82,7 @@ The Transparency Service is the core component of the mutual monitoring architec
 1. Transparency Services have a Submissions API with endpoints for an Issuer to complete Registration of a Signed Claim.
 1. Transparency Services have an Entry API with endpoints for any Relying Party to retrieve one or more entries previously registered with in the Append-only Log.
 
-For a fully conformant implementation, Transparency Services for Mutual Monitoring MUST implement the conformant APIs
+For a fully conformant implementation, Transparency Services for Mutual Monitoring MUST implement minimally required API endpoints in the [SCITT Reference API specification draft](https://www.ietf.org/archive/id/draft-ietf-scitt-scrapi-04.html) [@scrapi25].
 
 ##### Registration Policy Engine
 
