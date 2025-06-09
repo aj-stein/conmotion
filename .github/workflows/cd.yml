@@ -2,6 +2,14 @@ name: CD
 
 on:
   push:
+    paths:
+      - '.tool-versions'
+      - 'Containerfile'
+      - 'Makefile'
+      - 'package.json'
+      - 'package-lock.json'
+      - 'docs/**'
+      - 'vendor/csl/**'
 
 jobs:
   build:
