@@ -90,9 +90,9 @@ Given [the above use cases](#use-cases), a cloud infrastructure provider MAY dep
 
 ## Terminology
 
-- [Transparency Service]{#transparency-service}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.34.1) [@scitt25].
-
 - [Relying Party]{#relying-party}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.26.1) [@scitt25].
+
+- [Transparency Service]{#transparency-service}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.34.1) [@scitt25].
 
 ## Appendix
 
