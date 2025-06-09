@@ -1,10 +1,10 @@
-name: CD
+name: Deploy Website
 
 on:
   push:
     paths:
       - '.tool-versions'
-      - 'Containerfile'
+      - 'Containerfile.docs'
       - 'Makefile'
       - 'package.json'
       - 'package-lock.json'
