@@ -78,7 +78,7 @@ Given [the above use cases](#use-cases), a cloud infrastructure provider MAY dep
 
 ##### Registration Policy Engine
 
-##### Append-Only Log
+##### Append-only Log
 
 ##### Adjacent Service for Storage
 
