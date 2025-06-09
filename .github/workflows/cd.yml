@@ -21,18 +21,41 @@ jobs:
         with:
           fetch-depth: 0
           submodules: true
+      - id: setup_node
+        name: Setup NodeJS
+        uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
+        with:
+          node-version-file: '.tool-versions'
+          cache: 'npm'
+      - id: packages_node
+        name: Install NodeJS packages
+        run: npm ci
+      - id: setup_chrome
+        name: Install Chrome for mermaid-cli to generate diagrams
+        uses: browser-actions/setup-chrome@c785b87e244131f27c9f19c1a33e2ead956ab7ce
+        with:
+          chrome-version: 137.0.7151.68
+          install-chromedriver: true
       - id: tag
-        name: Tag specification before building site
-        run: make tag
+        name: Prep and tag spec before build
+        run: |
+          make tag
+      - id: render
+        name: Render assets
+        run: |
+          make render  MERMAID_EXE_WRAPPER="aa-exec --profile=chrome"
       - id: build
         name: Build website
-        uses: docker://pandoc/core@sha256:a115371a3f4b3f93233ef894f31eb8c4235fbcee60c64846f1a61c1c970d338c
+        uses: docker://ghcr.io/aj-stein/pandoc/latex@sha256:73e426028ee2b197a9f8bf0a63b50c10b361436d64165d5a0c62e7d630bc94d7
         with:
-          args: |
-            docs/architecture.md -o docs/architecture.html --bibliography docs/references.bib --citeproc --csl vendor/csl/apa-6th-edition.csl
-      - id: publish
-        name: Copy built site to stage for publication
-        run: make publish       
+          entrypoint: make
+          args: publish
+      - id: convert
+        name: Convert website to PDF
+        uses: docker://ghcr.io/aj-stein/pandoc/latex@sha256:73e426028ee2b197a9f8bf0a63b50c10b361436d64165d5a0c62e7d630bc94d7
+        with:
+          entrypoint: make
+          args: convert
       - id: upload
         name: Upload Build Artifact
         uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
@@ -66,6 +89,9 @@ jobs:
       deployments: write
     environment:
       name: netlify
+    env:
+      NETLIFY_AUTH_TOKEN: ${{ secrets.NETLIFY_AUTH_TOKEN }}
+      NETLIFY_SITE_ID: ${{ secrets.NETLIFY_SITE_ID }}      
     runs-on: ubuntu-24.04
     steps:
       - id: deployment
@@ -76,9 +102,6 @@ jobs:
           env: netlify
       - id: checkout
         uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
-        with:
-          fetch-depth: 0
-          submodules: true       
       - id: setup_node
         name: Setup NodeJS
         uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020
@@ -105,8 +128,6 @@ jobs:
         run: |
           npx netlify-cli deploy \
             --dir=build \
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            --site ${{ secrets.NETLIFY_SITE_ID }} \
             --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
             --prod \
             --json >> deploy_output.json
@@ -117,9 +138,8 @@ jobs:
         run: |
           npx netlify-cli deploy \
             --dir=build \
-            --branch=${{ github.head_ref || github.ref_name }} \            
-            --auth ${{ secrets.NETLIFY_AUTH_TOKEN }} \
-            --site ${{ secrets.NETLIFY_SITE_ID }} \
+            --context=branch-deploy \
+            --alias=${{ github.head_ref || github.ref_name }} \
             --message '${{ github.head_ref || github.ref_name }} ${{ github.sha }}' \
             --json >> deploy_output.json
           echo "deploy_url=$(jq -r '.deploy_url' deploy_output.json)" >> $GITHUB_OUTPUT

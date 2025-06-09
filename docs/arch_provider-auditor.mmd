@@ -1,0 +1,23 @@
+architecture-beta
+    group provider(cloud)[Cloud Infrastructure Provider]
+
+    service provider_storage(disk)[Storage Service] in provider
+    service provider_tscore(server)[Transparency Service] in provider
+    service provider_search(server)[Search Service] in provider
+    service provider_rp(server)[Relying Party Client] in provider
+
+    provider_tscore:T -- L:provider_storage
+    provider_tscore:L -- R:provider_search
+    provider_tscore:T -- L:provider_rp
+
+    group auditor(cloud)[Cloud Infrastructure Auditor]
+
+    service auditor_storage(disk)[Storage Service] in auditor
+    service auditor_tscore(server)[Transparency Service] in auditor
+    service auditor_search(server)[Search Service] in auditor
+    service auditor_rp(server)[Relying Party Client] in auditor
+
+    auditor_tscore:R -- L:auditor_storage
+    auditor_tscore:R -- L:auditor_search
+    auditor_tscore:R -- L:auditor_rp
+    provider_tscore:R -- L:auditor_rp
