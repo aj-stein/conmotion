@@ -23,7 +23,7 @@ jobs:
       HOME_REPO: aj-stein/conmotion
       REGISTRY: ghcr.io
       IMAGE_NAME: aj-stein/conmotion/service
-      IMAGE_FILE: Container.service
+      IMAGE_FILE: Containerfile.service
       # Docs: github.com/docker/metadata-action/?tab=readme-ov-file#typesha
       DOCKER_METADATA_PR_HEAD_SHA: true
       # https://github.com/docker/metadata-action?tab=readme-ov-file#annotations
