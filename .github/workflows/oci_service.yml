@@ -66,7 +66,7 @@ jobs:
             maintainers="A.J. Stein <iam@ajstein.me>"
             org.opencontainers.image.authors="A.J. Stein <iam@ajstein.me>"
             org.opencontainers.image.documentation="https://aj-stein.github.io/conmotion/"
-            org.opencontainers.image.source="https://github.com/aj-stein/conmotion/Containerfile.service"
+            org.opencontainers.image.source="https://github.com/aj-stein/conmotion/blob/${{ github.sha }}/${{ env.IMAGE_FILE }}"
             org.opencontainers.image.vendor="A.J. Stein"
             org.opencontainers.image.title="Conmotion Service Container"
             org.opencontainers.image.description="Conmotion container with the service entrypoint"
