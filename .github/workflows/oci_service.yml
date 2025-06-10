@@ -38,7 +38,8 @@ jobs:
           platforms: linux/amd64,linux/arm64 
 
         uses: docker/setup-buildx-action@988b5a0280414f521da01fcc63a27aeeb4b104db
-      - name: Container image login
+      - if: github.repository == env.HOME_REPO && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/feature'))
+        name: Container image login
         id: image_login
         uses: docker/login-action@65b78e6e13532edd9afa3aa52ac7964289d1a9c1
         with:
