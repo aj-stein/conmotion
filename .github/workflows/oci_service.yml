@@ -66,7 +66,7 @@ jobs:
             maintainers="A.J. Stein <iam@ajstein.me>"
             org.opencontainers.image.authors="A.J. Stein <iam@ajstein.me>"
             org.opencontainers.image.documentation="https://aj-stein.github.io/conmotion/"
-            org.opencontainers.image.source="https://github.com/aj-stein/conmotion/blob/${{ github.sha }}/${{ env.IMAGE_FILE }}"
+            org.opencontainers.image.source="https://github.com/aj-stein/conmotion/blob/main/${{ env.IMAGE_FILE }}"
             org.opencontainers.image.vendor="A.J. Stein"
             org.opencontainers.image.title="Conmotion Service Container"
             org.opencontainers.image.description="Conmotion container with the service entrypoint"
@@ -76,7 +76,7 @@ jobs:
         id: image_registry_push
         uses: docker/build-push-action@f2a1d5e99d037542a71f64918e516c093c6f3fc4
         with:
-          context: ${{ github.workspace }}
+          context: .
           file: ${{ env.IMAGE_FILE }}
           push: true
           tags: ${{ steps.image_metadata.outputs.tags }}
