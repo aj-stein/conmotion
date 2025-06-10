@@ -3,6 +3,7 @@ name: Build OCI Image (Docs)
 on:
   push:
     paths:
+      - '.github/workflows/docs.yml'
       - '.github/workflows/oci_docs.yml'
       - '.tool-versions'
       - 'Containerfile.docs'
