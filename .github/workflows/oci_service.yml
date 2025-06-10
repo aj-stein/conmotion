@@ -1,8 +1,9 @@
-name: Build Container Images
+name: Build OCI Image (Transparency Service)
 
 on:
   push:
     paths:
+      - '.github/workflows/oci_service.yml'
       - '.python-version'
       - '.tool-versions'
       - 'Containerfile.service'
