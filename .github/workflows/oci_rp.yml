@@ -1,12 +1,12 @@
-name: Build OCI Image (Transparency Service)
+name: Build OCI Image (Relying Party)
 
 on:
   push:
     paths:
-      - '.github/workflows/oci_service.yml'
+      - '.github/workflows/oci_rp.yml'
       - '.python-version'
       - '.tool-versions'
-      - 'Containerfile.service'
+      - 'Containerfile.rp'
       - 'conmotion/**'
       - 'pyproject.toml'
       - 'uv.lock'
