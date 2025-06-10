@@ -47,13 +47,13 @@ jobs:
           make render  MERMAID_EXE_WRAPPER="aa-exec --profile=chrome"
       - id: build
         name: Build website
-        uses: docker://ghcr.io/aj-stein/pandoc/latex@latest
+        uses: docker://ghcr.io/aj-stein/pandoc/latex:latest
         with:
           entrypoint: make
           args: publish
       - id: convert
         name: Convert website to PDF
-        uses: docker://ghcr.io/aj-stein/pandoc/latex@sha256:73e426028ee2b197a9f8bf0a63b50c10b361436d64165d5a0c62e7d630bc94d7
+        uses: docker://ghcr.io/aj-stein/pandoc/latex:latest
         with:
           entrypoint: make
           args: convert
