@@ -30,6 +30,10 @@ jobs:
       DOCKER_METADATA_ANNOTATIONS_LEVELS: manifest,index
     runs-on: ubuntu-24.04
     steps:
+      - id: checkout
+        uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+        with:
+          fetch-depth: 0
       - name: Container image QEMU setup for cross-arch builds
         id: image_setup_qemu
         uses: docker/setup-qemu-action@49b3bc8e6bdd4a60e6116a5414239cba5943d3cf
@@ -77,7 +81,7 @@ jobs:
         uses: docker/build-push-action@263435318d21b8e681c14492fe198d362a7d2c83
         with:
           context: .
-          file: ./${{ env.IMAGE_FILE }}
+          file: ${{ env.IMAGE_FILE }}
           push: true
           tags: ${{ steps.image_metadata.outputs.tags }}
           labels: ${{ steps.image_metadata.outputs.annotations }}
