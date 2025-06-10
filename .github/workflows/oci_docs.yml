@@ -40,7 +40,7 @@ jobs:
       - name: Container image buildx setup for cross-arch builds
         id: image_setup_buildx
         with:
-          platforms: linux/amd64,linux/arm64 
+          platforms: linux/amd64
 
         uses: docker/setup-buildx-action@988b5a0280414f521da01fcc63a27aeeb4b104db
       - if: github.repository == env.HOME_REPO && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/feature'))
@@ -85,7 +85,7 @@ jobs:
           push: true
           tags: ${{ steps.image_metadata.outputs.tags }}
           labels: ${{ steps.image_metadata.outputs.annotations }}
-          platforms: linux/amd64,linux/arm64
+          platforms: linux/amd64
           cache-from: type=gha
           cache-to: type=gha,mode=max
       - if: github.repository == env.HOME_REPO && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/develop' || startsWith(github.ref, 'refs/heads/feature'))
