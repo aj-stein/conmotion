@@ -87,6 +87,10 @@ For a fully conformant implementation, Transparency Services for Mutual Monitori
 
 ##### Append-only Log
 
+The foundation of the Transparency Service is the Append-Only Log. The Append-ony Log is a sequence of Signed Statements that completed Registration through the Submission API and are accessible to a Relying Party from the Entry API. The append-only characteristic is integral to providing the integrity of individual Signed Statements, but the sequence itself. To do so, a Transparency Service needs to serialized Signed Statements in the Append-Only Log with a Verifiable Data Structure.
+
+The Verifiable Data Structure, and supporting algorithms, for serializing data MUST use allow only for Append-only updates that do not permit reordering; enforce Non-equivocation for the Append-only Log; and allow Replayability so any Relying Party can consume the Append-only Log's data and check individual Statements or the full sequence [@scitt25]. Transparency services instances for mutual monitoring MUST implement the Verifiable Data Structure the IETF COSE Working Group specifies in its draft specification for COSE Receiptis [-@cose_receipts25].
+
 ##### Registration Policy API
 
 ##### Submissions API
