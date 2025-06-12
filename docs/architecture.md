@@ -85,9 +85,13 @@ The Transparency Service is the core component of the mutual monitoring architec
 
 For a fully conformant implementation, Transparency Services for Mutual Monitoring MUST implement minimally required API endpoints in the [SCITT Reference API specification draft](https://www.ietf.org/archive/id/draft-ietf-scitt-scrapi-04.html) [@scrapi25].
 
-##### Registration Policy Engine
-
 ##### Append-only Log
+
+##### Registration Policy API
+
+##### Submissions API
+
+##### Entry API
 
 ##### Adjacent Service for Storage
 
