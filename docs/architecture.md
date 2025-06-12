@@ -105,11 +105,21 @@ For a fully conformant implementation, Transparency Services for Mutual Monitori
 
 - [Append-only Log]{#term-append-only-log}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.4.1) [@scitt25].
 
-- [Issuer]{#term-issuer}:  This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.16.1) [@scitt25].
+- [Equivocation]{#term-equivocation}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.14.1) [@scitt25].
+
+- [Issuer]{#term-issuer}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.16.1) [@scitt25].
+
+- [Non-equivocation]{#term-non-equivocation}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.18.1) [@scitt25].
+
+- [Registration]{#term-registration} This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.22.1) [@scitt25].
 
 - [Relying Party]{#term-relying-party}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.26.1) [@scitt25].
 
+- [Signed Statement]{#term-signed-statement}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.22.1) [@scitt25].
+
 - [Transparency Service]{#term-transparency-service}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.34.1) [@scitt25].
+
+- [Verifiable Data Structure]{#term-vds}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.38.1) [@scitt25].
 
 ## Appendix
 
