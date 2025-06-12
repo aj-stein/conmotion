@@ -2,11 +2,11 @@
 
 **Author:** [A.J. Stein](mailto:astein38@gatech.edu)
 <br/>
-**Version:** [/develop](https://github.com/aj-stein/conmotion/tree//develop)
+**Version:** [7dd0d317fdb3e0d8ed99657efb34d1c3efe02fa2](https://github.com/aj-stein/conmotion/tree/7dd0d317fdb3e0d8ed99657efb34d1c3efe02fa2)
 <br/>
 **Modified at:** 2025-06-09
 
-_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree//develop) generated this copy of the specification, supporting documentation, and related code. You can [click this link](./architecture.pdf) to download this specification as a PDF document._
+_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree/7dd0d317fdb3e0d8ed99657efb34d1c3efe02fa2) generated this copy of the specification, supporting documentation, and related code. You can [click this link](./architecture.pdf) to download this specification as a PDF document._
 
 ## Abstract
 
@@ -98,9 +98,9 @@ For a fully conformant implementation, Transparency Services for Mutual Monitori
 
 ## Terminology
 
-- [Append-only Log]{#term-append-only-log}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.4.1)[@scitt25].
+- [Append-only Log]{#term-append-only-log}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.4.1) [@scitt25].
 
-- [Issuer]{#term-issuer}:  This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.16.1)[@scitt25].
+- [Issuer]{#term-issuer}:  This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.16.1) [@scitt25].
 
 - [Relying Party]{#term-relying-party}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.26.1) [@scitt25].
 
