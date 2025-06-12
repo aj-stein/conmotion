@@ -78,6 +78,7 @@ Given [the above use cases](#use-cases), a cloud infrastructure provider MAY dep
 
 The Transparency Service is the core component of the mutual monitoring architecture. An implementation MUST conform to the normative requirements in the current draft of the IETF SCITT Architecture [@scitt25]. These requirements document the minimally viable features, listed below, for a Transparency Service to function for the mutual monitoring use cases [documented above](#use-cases).
 
+1. Transparency Services have an Append-Only Log of Signed Statements in order of Registration so one or more instances can maintain their integrity and prevent equivocation or other forms of misuse.
 1. Transparency Services have a Registration Policy API with endpoints for any Relying Party to determine signing and Claim requirements before Registration.
 1. Transparency Services have a Submissions API with endpoints for an Issuer to complete Registration of a Signed Claim.
 1. Transparency Services have an Entry API with endpoints for any Relying Party to retrieve one or more entries previously registered with in the Append-only Log.
