@@ -117,6 +117,8 @@ For a fully conformant implementation, Transparency Services for Mutual Monitori
 
 - [Signed Statement]{#term-signed-statement}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.22.1) [@scitt25].
 
+- [Transparency]{#term-transparency}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#name-definition-of-transparency) [@scitt25].
+
 - [Transparency Service]{#term-transparency-service}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.34.1) [@scitt25].
 
 - [Verifiable Data Structure]{#term-vds}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.38.1) [@scitt25].
