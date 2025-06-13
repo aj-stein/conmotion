@@ -93,6 +93,14 @@ The Verifiable Data Structure, and supporting algorithms, for serializing data M
 
 ##### Registration Policy API
 
+A Transparency Service MUST implement a Registration Policy API to identify permissible trust anchors, Issuer identity, Statement Subjects, or any other mandatory requirements for a Statement for successful Registration [@scitt25].
+
+A Transparency MAY publish a Registration Policy with any trust anchor and no additional requirements. It MAY publish a Registration Policy that requires specific trust anchors, Issuer identities, Statement Subjects, and other custom requirements for the payload of the Statement.
+
+A Transparency Service MUST support initialization and bootstrapping with pre-configured Registration Policy; Registration of a first Signed Statement without checks required by the Registration Policy for successive submissions; an authenticated out-of-band management interface [@scitt25].
+
+n addition to the baseline requirements from IETF SCITT Architecture and IETF SCITT Reference API specifications, a Transparency Service MUST implement an API endpoint `/registrations` for Relying Parties to consume the currently active Registration Policy. A Transparency Service MAY also provide historical Registration Policies for a Relying Party to consume for historical analysis of Signed Statements.
+
 ##### Submissions API
 
 ##### Entry API
@@ -117,11 +125,17 @@ The Verifiable Data Structure, and supporting algorithms, for serializing data M
 
 - [Registration]{#term-registration} This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.22.1) [@scitt25].
 
+- [Registration Policy]{#term-registration-policy}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.24.1) [@scitt25].
+
 - [Relying Party]{#term-relying-party}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.26.1) [@scitt25].
 
 - [Replayability]{#term-replayability}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-5.1.3-2.6.1) [@scitt25].
 
-- [Signed Statement]{#term-signed-statement}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.22.1) [@scitt25].
+- [Signed Statement]{#term-signed-statement}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.28.1) [@scitt25].
+
+- [Statement]{#term-statement}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.30.1) [@scitt25].
+
+- [Subject]{#term-subject}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.32.1) [@scitt25].
 
 - [Transparency]{#term-transparency}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#name-definition-of-transparency) [@scitt25].
 
