@@ -2,23 +2,27 @@
 
 **Author:** [A.J. Stein](mailto:astein38@gatech.edu)
 <br/>
-**Version:** [/develop](https://github.com/aj-stein/conmotion/tree//develop)
+**Version:** [7dd0d317fdb3e0d8ed99657efb34d1c3efe02fa2](https://github.com/aj-stein/conmotion/tree/7dd0d317fdb3e0d8ed99657efb34d1c3efe02fa2)
 <br/>
-**Modified at:** 2025-06-08
+**Modified at:** 2025-06-09
 
-_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree//develop) generated this copy of the specification, supporting documentation, and related code. You can [click this link](./architecture.pdf) to download this specification as a PDF document._
-
-_NOTE: This specification conforms to IETF's best practice [in RFC 2119](https://datatracker.ietf.org/doc/rfc2119/) to capitalize all letters in key words to indicate requirement levels [@rfc2119]. This specification also capitalizes certain words or phrases with common meaning when this specification gives them a precise normative definition. See the [Terminology section](#terminology) for a complete listing of these terms._
+_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree/7dd0d317fdb3e0d8ed99657efb34d1c3efe02fa2) generated this copy of the specification, supporting documentation, and related code. You can [click this link](./architecture.pdf) to download this specification as a PDF document._
 
 ## Abstract
 
 The transparency of cloud infrastructures is a systemic challenge to industry.
 
-Internal or external stakeholders of a cloud infrastructure may want to publish or verify data about its operational, resiliency, or security properties. However, there are no specifications for common data structures, protocols, or measurement algorithms to transparently demonstrate evidence of those properties at once or over a time interval. This document proposes an architecture that specializes the Transparency Service architecture for providers of cloud infrastructures. The specialization of this architecture will enable them to publish evidence of security properties with verifiable digital signatures. Providers of cloud infrastructures, their consumers, or external auditors may also publish counter-signatures to verify multi-party evaluation and verification of this evidence, known as a mutual monitoring network.
+Internal or external stakeholders of a cloud infrastructure may want to publish or verify data about its operational, resiliency, or security properties. However, there are no specifications for common data structures, protocols, or measurement algorithms to transparently demonstrate evidence of those properties at once or over a time intervals. This document proposes an architecture that specializes the Transparency Service architecture for providers of cloud infrastructures. The specialization of this architecture will enable them to publish evidence of security properties with verifiable digital signatures. Providers of cloud infrastructures, their consumers, or external auditors may also publish counter-signatures to verify multi-party evaluation and verification of this evidence, known as a mutual monitoring network.
+
+## Conventions
+
+This specification conforms to IETF's best practice [in RFC 2119](https://datatracker.ietf.org/doc/rfc2119/) to capitalize all letters in key words to indicate requirement levels [@rfc2119].
+
+This specification also capitalizes certain words or phrases with common meaning when this specification gives them a precise normative definition. See the [Terminology section](#terminology) for a complete listing of these terms.
 
 ## Introduction
 
-Cloud infrastructures require their providers to design, implement, and document security properties against a threat model and actively monitor these properties for their efficacy. Moreover, cloud infrastructures have essential characteristics that uniquely distinguish them from other deployment models. They have measured services where the provider and consumer control components automatically and precisely through metering capabilities and on-demand self-services for consumers to unilaterally provision components [@mell11 p.  2]. 
+Cloud infrastructures require their providers to design, implement, and document security properties against a threat model and actively monitor these properties for their efficacy in mitigating threats. Moreover, cloud infrastructures have essential characteristics that uniquely distinguish them from other deployment models. They have measured services where the provider and consumer control components automatically and precisely through metering capabilities and on-demand self-services for consumers to unilaterally provision components [@mell11 p.  2]. 
 
 Despite these essential characteristics and the proliferation of many differentiated, proprietary services for cloud infrastructures, there is no de-facto standard or vendor-agnostic solution to publish digitally-signed data for a cloud service infrastructure, counter-sign the data to acknowledge and verify its contents, and/or enrich a collection of this data with verifiable measurements. Different providers have monitoring capabilities for security properties of cloud infrastructures, but most are partial, proprietary, confidential, and do not permit scalable multi-party verification of data. Therefore, a Transparency Service architecture is needed for different parties to publish signed data, counter-sign acknowledgements, and publish follow-on measurements for parties to mutually monitor heavily interconnected infrastructures.
 
@@ -34,7 +38,7 @@ Inventory management of systems that comprise components of a cloud infrastructu
 
 #### Cloud Infrastructure Provider
 
-A cloud infrastructure provider uses bespoke asset management system(s) predominantly for internal use. The provider's staff can use a Transparency Service as a high-fidelity replica of the asset management system(s) data, tracking changes over time, or as the canonical source of inventory. The provider's staff will integrate inventory management automation to create new entries into the append-only log of the Transparency Service, adding digitally signed records one-by-one for the provisioning and deprovisioning of all systems in the infrastructure. The most recent record embeds a linkage by hash to the previous record in the append-only log. Staff can check the most recent record to now the latest changes or "replay the log" with the fully exported data of the append-only log to understand all changes over time and compose a realistic model of the services monitored. 
+A cloud infrastructure provider uses bespoke asset management system(s) predominantly for internal use. The provider's staff can use a Transparency Service as a high-fidelity replica of the asset management system(s) data, tracking changes over time, or as the canonical source of inventory. The provider's staff will integrate inventory management automation to create new entries into the Append-only Log of the Transparency Service, adding digitally signed records one-by-one for the provisioning and deprovisioning of all systems in the infrastructure. The most recent record embeds a linkage by hash to the previous record in the Append-only Log. Staff can check the most recent record to now the latest changes or "replay the log" with the fully exported data of the Append-only Log to understand all changes over time and compose a realistic model of the services monitored. 
 
 #### Cloud Infrastructure Customer
 
@@ -42,7 +46,7 @@ A customer of a cloud infrastructure uses the cloud infrastructure provider as a
 
 #### Auditor
 
-An auditor, accountable to the cloud infrastructure provider, their customer, or both, must review the efficacy of security control implementations through expert review of artifacts. In the case of inventory management, it is important for the auditor to use these artifacts as evidence. The auditor compares the evidence from the provider to their own artifacts they collect independently, and verify the provider's inventory is accurate and has no anomalies. Auditors can consume the append-only log of the Transparency Service to ascertain contemporary or historical view of the provider's inventory and thereby the efficacy of their inventory management techniques. Auditors can also digitally sign receipts and append them the transparency log to endorse inventory records, so that customers of the cloud infrastructure provider can analyze auditor endorsements in transparency log records to acquire cloud infrastructure or continue using it.
+An auditor, accountable to the cloud infrastructure provider, their customer, or both, must review the efficacy of security control implementations through expert review of artifacts. In the case of inventory management, it is important for the auditor to use these artifacts as evidence. The auditor compares the evidence from the provider to their own artifacts they collect independently, and verify the provider's inventory is accurate and has no anomalies. Auditors can consume the Append-only Log of the Transparency Service to ascertain contemporary or historical view of the provider's inventory and thereby the efficacy of their inventory management techniques. Auditors can also digitally sign receipts and append them the transparency log to endorse inventory records, so that customers of the cloud infrastructure provider can analyze auditor endorsements in transparency log records to acquire cloud infrastructure or continue using it.
 
 ### Monitoring Configuration Management
 
@@ -50,7 +54,7 @@ Configuration management for systems that comprise components of a cloud infrast
 
 #### Cloud Infrastructure Provider
 
-A cloud infrastructure provider uses bespoke configuration management system(s) mostly for internal use. The provider's staff can use a Transparency Service as a high-fidelity replica of the configuration management system(s) data, tracking changes over time, or as the canonical source of inventory. This data will cross-reference which systems link to which configurations with both datasets on the Transparency Service. The provider's staff will integrate inventory management and configuration management automation to create new entries into the append-only log of the Transparency Service, adding digitally signed records one-by-one for the creation, modification, and deletion of configurations for different assets in the cloud infrastructure. The most recent record embeds a linkage by hash to the previous record in the append-only log. Staff can check the most recent record to now the latest changes or "replay the log" with the fully exported data of the append-only log to understand all changes over time and compose a realistic model of the services monitored. 
+A cloud infrastructure provider uses bespoke configuration management system(s) mostly for internal use. The provider's staff can use a Transparency Service as a high-fidelity replica of the configuration management system(s) data, tracking changes over time, or as the canonical source of inventory. This data will cross-reference which systems link to which configurations with both datasets on the Transparency Service. The provider's staff will integrate inventory management and configuration management automation to create new entries into the Append-only Log of the Transparency Service, adding digitally signed records one-by-one for the creation, modification, and deletion of configurations for different assets in the cloud infrastructure. The most recent record embeds a linkage by hash to the previous record in the Append-only Log. Staff can check the most recent record to now the latest changes or "replay the log" with the fully exported data of the Append-only Log to understand all changes over time and compose a realistic model of the services monitored. 
 
 #### Cloud Infrastructure Customer
 
@@ -58,7 +62,7 @@ A customer of a cloud infrastructure uses the cloud infrastructure provider as a
 
 #### Auditor
 
-An auditor, accountable to the cloud infrastructure provider, their customer, or both, must review the efficacy of security control implementations through expert review of artifacts. In the case of configuration management, it is important for the auditor to use these artifacts as evidence. The auditor compares the evidence from the provider to their own artifacts they collect independently, and verify the provider's inventory and related configuration management records  are accurate and without anomalies. Auditors can consume the append-only log of the Transparency Service to ascertain contemporary or historical view of the provider's configuration management records and thereby the efficacy of their configuration management techniques. Auditors can also digitally sign receipts and append them the transparency log to endorse inventory records, so that customers of the cloud infrastructure provider can analyze auditor endorsements in transparency log records to newly acquire cloud infrastructure or continue using it.
+An auditor, accountable to the cloud infrastructure provider, their customer, or both, must review the efficacy of security control implementations through expert review of artifacts. In the case of configuration management, it is important for the auditor to use these artifacts as evidence. The auditor compares the evidence from the provider to their own artifacts they collect independently, and verify the provider's inventory and related configuration management records  are accurate and without anomalies. Auditors can consume the Append-only Log of the Transparency Service to ascertain contemporary or historical view of the provider's configuration management records and thereby the efficacy of their configuration management techniques. Auditors can also digitally sign receipts and append them the transparency log to endorse inventory records, so that customers of the cloud infrastructure provider can analyze auditor endorsements in transparency log records to newly acquire cloud infrastructure or continue using it.
 
 ## Architecture
 
@@ -72,9 +76,34 @@ Given [the above use cases](#use-cases), a cloud infrastructure provider MAY dep
 
 #### Transparency Service
 
-##### Registration Policy Engine
+The Transparency Service is the core component of the mutual monitoring architecture. An implementation MUST conform to the normative requirements in the current draft of the IETF SCITT Architecture [@scitt25]. These requirements document the minimally viable features, listed below, for a Transparency Service to function for the mutual monitoring use cases [documented above](#use-cases).
 
-##### Append-Only Log
+1. Transparency Services have an Append-Only Log of Signed Statements in order of Registration so one or more instances can maintain their integrity and prevent equivocation or other forms of misuse.
+1. Transparency Services have a Registration Policy API with endpoints for any Relying Party to determine signing and Claim requirements before Registration.
+1. Transparency Services have a Submissions API with endpoints for an Issuer to complete Registration of a Signed Claim.
+1. Transparency Services have an Entry API with endpoints for any Relying Party to retrieve one or more entries previously registered with in the Append-only Log.
+
+For a fully conformant implementation, Transparency Services for Mutual Monitoring MUST implement minimally required API endpoints in the [SCITT Reference API specification draft](https://www.ietf.org/archive/id/draft-ietf-scitt-scrapi-04.html) [@scrapi25].
+
+##### Append-only Log
+
+The foundation of the Transparency Service is the Append-Only Log. The Append-ony Log is a sequence of Signed Statements that completed Registration through the Submission API and are accessible to a Relying Party from the Entry API. The append-only characteristic is integral to providing the integrity of individual Signed Statements, but the sequence itself. To do so, a Transparency Service needs to serialized Signed Statements in the Append-Only Log with a Verifiable Data Structure.
+
+The Verifiable Data Structure, and supporting algorithms, for serializing data MUST use allow only for Append-only updates that do not permit reordering; enforce Non-equivocation for the Append-only Log; and allow Replayability so any Relying Party can consume the Append-only Log's data and check individual Statements or the full sequence [@scitt25]. Transparency services instances for mutual monitoring MUST implement the Verifiable Data Structure the IETF COSE Working Group specifies in its draft specification for COSE Receiptis [-@cose_receipts25].
+
+##### Registration Policy API
+
+A Transparency Service MUST implement a Registration Policy API to identify permissible trust anchors, Issuer identity, Statement Subjects, or any other mandatory requirements for a Statement for successful Registration [@scitt25].
+
+A Transparency MAY publish a Registration Policy with any trust anchor and no additional requirements. It MAY publish a Registration Policy that requires specific trust anchors, Issuer identities, Statement Subjects, and other custom requirements for the payload of the Statement.
+
+A Transparency Service MUST support initialization and bootstrapping with pre-configured Registration Policy; Registration of a first Signed Statement without checks required by the Registration Policy for successive submissions; an authenticated out-of-band management interface [@scitt25].
+
+n addition to the baseline requirements from IETF SCITT Architecture and IETF SCITT Reference API specifications, a Transparency Service MUST implement an API endpoint `/registrations` for Relying Parties to consume the currently active Registration Policy. A Transparency Service MAY also provide historical Registration Policies for a Relying Party to consume for historical analysis of Signed Statements.
+
+##### Submissions API
+
+##### Entry API
 
 ##### Adjacent Service for Storage
 
@@ -86,9 +115,33 @@ Given [the above use cases](#use-cases), a cloud infrastructure provider MAY dep
 
 ## Terminology
 
-- [Transparency Service]{#transparency-service}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.34.1) [@scitt25].
+- [Append-only Log]{#term-append-only-log}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.4.1) [@scitt25].
 
-- [Relying Party]{#relying-party}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.26.1) [@scitt25].
+- [Equivocation]{#term-equivocation}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.14.1) [@scitt25].
+
+- [Issuer]{#term-issuer}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.16.1) [@scitt25].
+
+- [Non-equivocation]{#term-non-equivocation}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.18.1) [@scitt25].
+
+- [Registration]{#term-registration} This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.22.1) [@scitt25].
+
+- [Registration Policy]{#term-registration-policy}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.24.1) [@scitt25].
+
+- [Relying Party]{#term-relying-party}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.26.1) [@scitt25].
+
+- [Replayability]{#term-replayability}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-5.1.3-2.6.1) [@scitt25].
+
+- [Signed Statement]{#term-signed-statement}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.28.1) [@scitt25].
+
+- [Statement]{#term-statement}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.30.1) [@scitt25].
+
+- [Subject]{#term-subject}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.32.1) [@scitt25].
+
+- [Transparency]{#term-transparency}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#name-definition-of-transparency) [@scitt25].
+
+- [Transparency Service]{#term-transparency-service}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.34.1) [@scitt25].
+
+- [Verifiable Data Structure]{#term-vds}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.38.1) [@scitt25].
 
 ## Appendix
 
