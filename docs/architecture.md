@@ -127,7 +127,7 @@ A Transparency Service MUST publish the current Registration Policy described ab
 
 - [Registration Policy]{#term-registration-policy}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.24.1) [@scitt25].
 
-- [Relying Party]{#term-relying-party}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.26.1) [@scitt25].
+- [Relying Party]{#term-relying-party}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.26.1) [@scitt25]. This term is a synonym of client in numerous IETF specifications, but connotes specifical requirements and functionalities particular to the SCITT Architecture specification. Therefore, this specification prefers the term Relying Party.
 
 - [Replayability]{#term-replayability}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-5.1.3-2.6.1) [@scitt25].
 
