@@ -103,6 +103,14 @@ A Transparency Service MUST publish the current Registration Policy described ab
 
 ##### Submissions API
 
+A Transparency Service MUST implement an endpoint for Issuers' Relying Parties to submit Signed Statements to perform Registration. If the Signed Statement has a valid digital signature and conforms to Registration Policy requirements, the Transparency Service accepts submission of the Signed Statement and appends it the Append-Only log for all Relying Parties to consume and process the Signed Statement's payload.
+
+A Transparency Service MUST implement a HTTPS endpoint at `/entries` for Issuers' Relying Parties to submit a Signed Statement for Registration with a HTTP `POST` query. The body of the query MUST be a valid and well-formed Signed Statement.
+
+When a Relying Party submits a HTTP `POST` query, a Transparency Service SHOULD return a response to the original HTTP `POST` query. A response MAY be the Receipt of the Signed Statement with its Registration data. If Registration is incomplete, a Transparency Service MAY return a response with the HTTP `301` status code and a locator URL, so a Relying Party SHOULD query the locator for the completion of Registration operations. If Registration is complete, a Transparency Service MAY return a response with a HTTP `201` status code and a body with a Transparent Statement, a Signed Statement that also includes in its unprotected header a Receipt of Registration from the Transparency Service.
+
+A Transparency Service MAY complete Registration of a submission of a Signed Statement with any payload that conforms to its Registration Policy. For Mutual Monitoring use cases, payloads SHOULD encode payloads with version v1.5.0 of the Open Cybersecurity Format (OCSF) data model. The payload should use the JSON serialization, but the Transparency Service MUST complete Registration of any well-formed or valid payload with OCSF in other serializations, or payloads in other data models and serializations, if it conforms to its Registration Policy.
+
 ##### Entry API
 
 ##### Adjacent Service for Storage
