@@ -99,8 +99,6 @@ A Transparency MAY publish a Registration Policy with any trust anchor and no ad
 
 A Transparency Service MUST support initialization and bootstrapping with pre-configured Registration Policy; Registration of a first Signed Statement without checks required by the Registration Policy for successive submissions; an authenticated out-of-band management interface [@scitt25].
 
-n addition to the baseline requirements from IETF SCITT Architecture and IETF SCITT Reference API specifications, a Transparency Service MUST implement an API endpoint `/registrations` for Relying Parties to consume the currently active Registration Policy. A Transparency Service MAY also provide historical Registration Policies for a Relying Party to consume for historical analysis of Signed Statements.
-
 ##### Submissions API
 
 ##### Entry API
