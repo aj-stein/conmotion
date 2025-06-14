@@ -123,6 +123,8 @@ A Transparency Service MUST publish the current Registration Policy described ab
 
 - [Non-equivocation]{#term-non-equivocation}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.18.1) [@scitt25].
 
+- [Receipt]{#term-receipt}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.20.1) [@scitt25].
+
 - [Registration]{#term-registration} This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.22.1) [@scitt25].
 
 - [Registration Policy]{#term-registration-policy}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.24.1) [@scitt25].
@@ -138,6 +140,8 @@ A Transparency Service MUST publish the current Registration Policy described ab
 - [Subject]{#term-subject}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.32.1) [@scitt25].
 
 - [Transparency]{#term-transparency}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#name-definition-of-transparency) [@scitt25].
+
+- [Transparent Statement]{#term-transparent-statement}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.36.1) [@scitt25].
 
 - [Transparency Service]{#term-transparency-service}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.34.1) [@scitt25].
 
