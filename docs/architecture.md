@@ -99,6 +99,8 @@ A Transparency MAY publish a Registration Policy with any trust anchor and no ad
 
 A Transparency Service MUST support initialization and bootstrapping with pre-configured Registration Policy; Registration of a first Signed Statement without checks required by the Registration Policy for successive submissions; an authenticated out-of-band management interface [@scitt25].
 
+A Transparency Service MUST publish the current Registration Policy described above via the `/.well-known/transparency-configuration` endpoint [@scrapi25].
+
 ##### Submissions API
 
 ##### Entry API
