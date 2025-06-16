@@ -129,6 +129,10 @@ Per [Appendix B of the current draft of the IETF SCITT Architecture](https://www
 
 ##### Adjacent Service for Search
 
+A Transparency Service MAY implement an Adjacent Service for Search. This Adjacent Service will implement an interface to a query API. This interface MAY allow Relying Parties to query the Transparency Service for the Entry ID, Registration Policy, Issuer key ID, Subject and/or additional key-value tuples related to the specific payloads of a Signed Statement or Receipt. The Adjacent Service MAY also implement a similar ability for authenticated and authorized Relying Parties to query associated Artifacts given the hash or other properties of the Artifact derived from the Signed Statement or Receipt.
+
+A Transparency Service for mutual monitoring of cloud service providers SHOULD implement this service.
+
 ### Actors and Roles
 
 ### Flows
