@@ -123,6 +123,8 @@ A Transparency Service MAY implement Adjacent Services for object storage, datab
 
 ##### Adjacent Service for Storage
 
+A Transparency Service MAY implement an Adjacent Service for Storage. This service SHOULD implement persistence and retrieval for the  original Artifact, which is the basis of information in a Signed Statement's payload. When implemented, the Adjacent Service for Storage facilitates remotely signing statements, thereby permitting Transparency Service and Relying Party operates to access and validate Signed Statements of Artifacts, when properly authenticated and authorized, based upon the hash of said Artifacts. Per [Appendix B of the current draft of the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#name-signing-statements-remotely), this approach is especially advantageous given the potentially large size of Artifacts and the growth of Append-only Log over time [@scitt25]. Therefore, Transparency Services for mutual monitoring of cloud service providers SHOULD implement this service.
+
 ##### Adjacent Service for Search
 
 ### Actors and Roles
