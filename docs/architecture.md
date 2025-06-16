@@ -117,6 +117,10 @@ A Transparency Service MUST implement an Entry API for Relying Parties to retrie
 
 A Transparency Service MUST implement this functionality at the `/entries` endpoint to return responses to queries using a HTTP `GET` query. The query of the Relying Party MUST have the ID of the Signed Statement, at a minimum, to get a valid response from a Transparency Service.
 
+#### Adjacent Services
+
+A Transparency Service MAY implement Adjacent Services for object storage, databases, software package management APIs, and custom functionality to support the mandatory core components on a Transparency Service [@scitt25]. This specification documents two recommended, but optional, Adjacent Services recommended for mutual monitoring of cloud service providers: an Adjacent Service for Storage an Adjacent Service for Search.
+
 ##### Adjacent Service for Storage
 
 ##### Adjacent Service for Search
@@ -126,6 +130,8 @@ A Transparency Service MUST implement this functionality at the `/entries` endpo
 ### Flows
 
 ## Terminology
+
+- [Adjacent Service]{#term-adjacent-service}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-5.1.4) [@scitt25].
 
 - [Append-only Log]{#term-append-only-log}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.4.1) [@scitt25].
 
