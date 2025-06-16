@@ -113,6 +113,10 @@ A Transparency Service MAY complete Registration of a submission of a Signed Sta
 
 ##### Entry API
 
+A Transparency Service MUST implement an Entry API for Relying Parties to retrieve Signed Statements that successfully completed Registration. If the Registration for a Signed Statement is not complete, a Transparency Service MUST return a Locator URL for Relying Parties to periodically check for successful completion of Registration, per [the Registration Policy API requirements listed above](#registration-policy-api).
+
+A Transparency Service MUST implement this functionality at the `/entries` endpoint to return responses to queries using a HTTP `GET` query. The query of the Relying Party MUST have the ID of the Signed Statement, at a minimum, to get a valid response from a Transparency Service.
+
 ##### Adjacent Service for Storage
 
 ##### Adjacent Service for Search
