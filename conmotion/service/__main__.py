@@ -1,7 +1,33 @@
 #!/usr/bin/env python3
 
-import sys
+from flask import Flask, redirect
+from werkzeug.wrappers import Response
 from ..utils.logging import logger
+from .registration import RegistrationPolicyService
 
-logger.info('Transparency initialized, now shutting down')
-sys.exit(0)
+app = Flask("conmotion_transparency_service")
+app.debug = True
+
+
+@app.route("/")
+def index() -> Response:
+    """
+    When a Relying Party or any HTTP client visits the service without a valid
+    endpoint per the specification, redirect to the documentation.
+    """
+    return redirect("https://conmotion.netlify.app/architecture.html", code=302)
+
+
+@app.route("/.well-known/transparency-configuration")
+def get_registration_policy() -> Response:
+    logger.debug("request for registration policy")
+    policy = RegistrationPolicyService()
+    return Response(policy.as_cbor(), mimetype="application/cbor")
+
+
+if __name__ == "__main__":
+    try:
+        logger.info("service starting up")
+        app.run()
+    finally:
+        logger.info("service service shutting down")
