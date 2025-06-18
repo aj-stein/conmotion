@@ -1,16 +1,14 @@
 #!/usr/bin/env python3
 
-from cryptography.hazmat.primitives.asymmetric import ec, utils
+from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.bindings._rust import openssl as rust_openssl
 from cryptography.hazmat.primitives.serialization import (
     Encoding,
-    load_pem_private_key,
     NoEncryption,
     PrivateFormat,
 )
-from cryptography import x509
-from cryptography.hazmat.primitives import hashes
-from typing import Dict, IO, Optional
+from typing import Dict, IO
+from .configuration import config
 from .logging import logger
 
 ECPrivateKey = rust_openssl.ec.ECPrivateKey
@@ -18,10 +16,12 @@ ECPrivateKey = rust_openssl.ec.ECPrivateKey
 class PrivateKeyFactory:
     def __init__(self, params: Dict[str, str]) -> None:
         self.engine = ec
-        curve = getattr(self.engine, params.get("crv"))
-        if not (curve):
-            raise KeyError("key generation engine requires explicit curve")
-        self.curve = curve
+        if not (params.get("crv")):
+          curve = config.get('private_key_curve')
+          logger.warning(f"key generation did not override curve, using default", extra={
+            "curve": curve
+          })
+        self.curve = getattr(self.engine, curve)
         self.key = None
         self.params = params
 
