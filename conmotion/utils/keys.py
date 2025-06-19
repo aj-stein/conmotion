@@ -64,5 +64,5 @@ class PrivateKeyFactory:
 
 class PrivateKey:
     @staticmethod
-    def from_pem(private_key: IO[bytes], password: IO[bytes] = None):
-        return load_pem_private_key(private_key, password)
+    def from_pem(data: IO[bytes], password: IO[bytes] = None):
+        return load_pem_private_key(data, password)
