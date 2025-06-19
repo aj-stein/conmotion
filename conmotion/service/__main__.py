@@ -8,6 +8,7 @@ from .registration import RegistrationPolicyService
 app = Flask("conmotion_transparency_service")
 app.debug = True
 
+registration_service = RegistrationPolicyService()
 
 @app.route("/")
 def index() -> Response:
@@ -21,8 +22,7 @@ def index() -> Response:
 @app.route("/.well-known/transparency-configuration")
 def get_registration_policy() -> Response:
     logger.debug("request for registration policy")
-    policy = RegistrationPolicyService()
-    return Response(policy.as_cbor(), mimetype="application/cbor")
+    return Response(regstration_service.as_cbor(), mimetype="application/cbor")
 
 
 if __name__ == "__main__":
