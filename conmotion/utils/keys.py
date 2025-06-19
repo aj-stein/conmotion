@@ -4,6 +4,7 @@ from cryptography.hazmat.primitives.asymmetric import ec
 from cryptography.hazmat.bindings._rust import openssl as rust_openssl
 from cryptography.hazmat.primitives.serialization import (
     Encoding,
+    load_pem_private_key,
     NoEncryption,
     PrivateFormat,
 )
@@ -48,7 +49,7 @@ class PrivateKeyFactory:
     def export_key(self) -> IO[bytes]:
         try:
             logger.debug(
-                "key_export_args", extra={"engine": self.engine.__name__, **self.params}
+                "export_key_args", extra={"engine": self.engine.__name__, **self.params}
             )
             if not self.key:
                 raise RuntimeError("key not generated before export")
@@ -57,3 +58,8 @@ class PrivateKeyFactory:
             )
         except Exception as e:
             logger.exception(e)
+
+class PrivateKey:
+    @staticmethod
+    def from_pem(private_key: IO[bytes], password: IO[bytes]=None):
+        return load_pem_private_key(private_key, password)
