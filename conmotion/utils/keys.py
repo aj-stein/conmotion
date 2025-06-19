@@ -14,14 +14,16 @@ from .logging import logger
 
 ECPrivateKey = rust_openssl.ec.ECPrivateKey
 
+
 class PrivateKeyFactory:
     def __init__(self, params: Dict[str, str]) -> None:
         self.engine = ec
         if not (params.get("crv")):
-          curve = config.get('private_key_curve')
-          logger.warning(f"key generation did not override curve, using default", extra={
-            "curve": curve
-          })
+            curve = config.get("private_key_curve")
+            logger.warning(
+                f"key generation did not override curve, using default",
+                extra={"curve": curve},
+            )
         self.curve = getattr(self.engine, curve)
         self.key = None
         self.params = params
@@ -59,7 +61,8 @@ class PrivateKeyFactory:
         except Exception as e:
             logger.exception(e)
 
+
 class PrivateKey:
     @staticmethod
-    def from_pem(private_key: IO[bytes], password: IO[bytes]=None):
+    def from_pem(private_key: IO[bytes], password: IO[bytes] = None):
         return load_pem_private_key(private_key, password)
