@@ -84,3 +84,8 @@ class CertificateFactory:
             return self.cert.public_bytes(Encoding.PEM)
         except Exception as e:
             logger.exception(e)
+
+class PublicCertificate:
+    @staticmethod
+    def from_pem(data: IO[bytes]):
+        return x509.load_pem_x509_certificate(data)
