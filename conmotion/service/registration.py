@@ -19,7 +19,6 @@ class RegistrationPolicyService:
         public_cert_path: Union[str|PathLike]=config.get("service_cert_path")
     ):
         self.is_ready = False
-        logger.debug(f"key path {private_key_path}")
         with (
            open(private_key_path, "rb") as key_fd,
            open(public_cert_path, "rb") as cert_fd
