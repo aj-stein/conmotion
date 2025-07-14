@@ -1,4 +1,7 @@
   sequenceDiagram
+          actor CSP_TS_STORE as CSP Adjacent Storage Service
+          actor CSP_TS_SEARCH as CSP Adjacent Search Service
+          actor CSP_TS as CSP Transparency Service
           actor CSP_IMS as CSP Inventory Management System
           actor CSP_RP as CSP Relying Party
           actor AUDITOR_TS as Auditor Transparency Service
@@ -8,20 +11,30 @@
           actor CUSTOMER_GRC as Customer Risk Dashboard
           CSP_IMS->>CSP_RP: send inventory update
           CSP_RP-->>CSP_RP: sign inventory statement 1
-          CSP_RP->>AUDITOR_TS: submit statement 1
+          CSP_RP->>CSP_TS: submit signed inventory statement 1
+          CSP_TS-->>CSP_TS: validate submitted statement 1
+          CSP_TS-->>CSP_TS: register statement 1, make receipt
+          CSP_TS->>CSP_TS_STORE: store and process statement 1 inventory data
+          CSP_TS_STORE->>CSP_TS: return hash of statement 1
+          CSP_TS->>CSP_RP: return transparent statement 1
+          CSP_RP->>AUDITOR_TS: submit signed statement 1
           AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 1
           AUDITOR_TS-->>AUDITOR_TS: register statement 1, make receipt
           AUDITOR_TS->>CSP_RP: return transparent statement 1
           AUDITOR_IMS->>AUDITOR_RP: send inventory change not reported byt CSP
           AUDITOR_RP-->>AUDITOR_RP: sign inventory statement 2
-          AUDITOR_RP->>AUDITOR_TS: submit statement 2
+          AUDITOR_RP->>AUDITOR_TS: submit signed statement 2
           AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 2
           AUDITOR_TS-->>AUDITOR_TS: register statement 2, make receipt
           AUDITOR_TS->>CSP_RP: return transparent statement 2
           AUDITOR_RP->>AUDITOR_TS: read last statements (1, 2)
           AUDITOR_RP-->>AUDITOR_RP: check for missing CSP inventory statements
+          AUDITOR_RP->>CSP_TS_SEARCH: query to confirm missing inventory
+          CSP_TS_SEARCH->>CSP_TS_STORE: query for matching inventory
+          CSP_TS_STORE->>CSP_TS_SEARCH: return matching inventory
+          CSP_TS_SEARCH->>AUDITOR_RP: return matching inventory
           AUDITOR_RP-->>AUDITOR_RP: sign measurement statement 3
-          AUDITOR_RP->>AUDITOR_TS: submit statement 3
+          AUDITOR_RP->>AUDITOR_TS: submit signed statement 3
           AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 3
           AUDITOR_TS-->>AUDITOR_TS: register statement 3, make receipt
           AUDITOR_TS->>CSP_RP: return transparent statement 3
