@@ -2,27 +2,30 @@
           actor CSP_TS_STORE as CSP Adjacent Storage Service
           actor CSP_TS_SEARCH as CSP Adjacent Search Service
           actor CSP_TS as CSP Transparency Service
-          actor CSP_CMBD as CSP Configuration Management Database
+          actor CSP_CMS as CSP Configuration Management System
           actor CSP_RP as CSP Relying Party
+          actor AUDITOR_TS_STORE as Auditor Adjacent Storage Service        
           actor AUDITOR_TS as Auditor Transparency Service
           actor AUDITOR_RP as Auditor Relying Party
           actor AUDITOR_CMS as Auditor Configuration Monitoring System
           actor CUSTOMER_RP as Customer Relying Party
           actor CUSTOMER_GRC as Customer Risk Dashboard
-          CSP_CMBD->>CSP_RP: send configuration update
-          CSP_RP-->>CSP_RP: sign configuration statement 1
+          CSP_CMS->>CSP_RP: send configuration update
+          CSP_RP->>CSP_TS_STORE: store and index configuration update
+          CSP_TS_STORE->>CSP_RP: return hash of configuration update
+          CSP_RP-->>CSP_RP: sign hash as configuration statement 1
           CSP_RP->>CSP_TS: submit signed configuration statement 1
           CSP_TS-->>CSP_TS: validate submitted statement 1
           CSP_TS-->>CSP_TS: register statement 1, make receipt
-          CSP_TS->>CSP_TS_STORE: store and process statement 1 configuration data
-          CSP_TS_STORE->>CSP_TS: return hash of statement 1
           CSP_TS->>CSP_RP: return transparent statement 1
           CSP_RP->>AUDITOR_TS: submit signed statement 1
           AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 1
           AUDITOR_TS-->>AUDITOR_TS: register statement 1, make receipt
           AUDITOR_TS->>CSP_RP: return transparent statement 1
           AUDITOR_CMS->>AUDITOR_RP: send configuration change not reported by CSP
-          AUDITOR_RP-->>AUDITOR_RP: sign configuration statement 2
+          AUDITOR_RP->>AUDITOR_TS_STORE: store and index configuration update
+          AUDITOR_TS_STORE->>AUDITOR_RP: return hash of configuration update          
+          AUDITOR_RP-->>AUDITOR_RP: sign hash as configuration statement 2
           AUDITOR_RP->>AUDITOR_TS: submit signed statement 2
           AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 2
           AUDITOR_TS-->>AUDITOR_TS: register statement 2, make receipt
@@ -40,4 +43,4 @@
           AUDITOR_TS->>CSP_RP: return transparent statement 3
           CUSTOMER_RP->>AUDITOR_TS: retrieve measurement statements
           AUDITOR_TS->>CUSTOMER_RP: return measurement statements
-          CUSTOMER_RP->>CUSTOMER_GRC: push measurements to customer dashboard 
+          CUSTOMER_RP->>CUSTOMER_GRC: push measurements to customer dashboard
