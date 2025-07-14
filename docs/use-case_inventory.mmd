@@ -10,19 +10,19 @@
           actor CUSTOMER_RP as Customer Relying Party
           actor CUSTOMER_GRC as Customer Risk Dashboard
           CSP_IMS->>CSP_RP: send inventory update
-          CSP_RP-->>CSP_RP: sign inventory statement 1
+          CSP_RP->>CSP_TS_STORE: store and index inventory update
+          CSP_TS_STORE->>CSP_RP: return hash of inventory update
+          CSP_RP-->>CSP_RP: sign hash as inventory statement 1
           CSP_RP->>CSP_TS: submit signed inventory statement 1
           CSP_TS-->>CSP_TS: validate submitted statement 1
           CSP_TS-->>CSP_TS: register statement 1, make receipt
-          CSP_TS->>CSP_TS_STORE: store and process statement 1 inventory data
-          CSP_TS_STORE->>CSP_TS: return hash of statement 1
           CSP_TS->>CSP_RP: return transparent statement 1
           CSP_RP->>AUDITOR_TS: submit signed statement 1
           AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 1
           AUDITOR_TS-->>AUDITOR_TS: register statement 1, make receipt
           AUDITOR_TS->>CSP_RP: return transparent statement 1
-          AUDITOR_IMS->>AUDITOR_RP: send inventory change not reported byt CSP
-          AUDITOR_RP-->>AUDITOR_RP: sign inventory statement 2
+          AUDITOR_IMS->>AUDITOR_RP: send inventory change not reported by CSP
+          AUDITOR_RP-->>AUDITOR_RP: sign hash as inventory statement 2
           AUDITOR_RP->>AUDITOR_TS: submit signed statement 2
           AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 2
           AUDITOR_TS-->>AUDITOR_TS: register statement 2, make receipt
