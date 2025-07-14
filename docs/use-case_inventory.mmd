@@ -9,16 +9,22 @@
           CSP_IMS->>CSP_RP: send inventory update
           CSP_RP-->>CSP_RP: sign inventory statement 1
           CSP_RP->>AUDITOR_TS: submit statement 1
+          AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 1
+          AUDITOR_TS-->>AUDITOR_TS: register statement 1, make receipt
           AUDITOR_TS->>CSP_RP: return transparent statement 1
           AUDITOR_IMS->>AUDITOR_RP: send inventory change not reported byt CSP
           AUDITOR_RP-->>AUDITOR_RP: sign inventory statement 2
           AUDITOR_RP->>AUDITOR_TS: submit statement 2
-          AUDITOR_TS->>AUDITOR_RP: return transparent statement 2
+          AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 2
+          AUDITOR_TS-->>AUDITOR_TS: register statement 2, make receipt
+          AUDITOR_TS->>CSP_RP: return transparent statement 2
           AUDITOR_RP->>AUDITOR_TS: read last statements (1, 2)
           AUDITOR_RP-->>AUDITOR_RP: check for missing CSP inventory statements
           AUDITOR_RP-->>AUDITOR_RP: sign measurement statement 3
           AUDITOR_RP->>AUDITOR_TS: submit statement 3
-          AUDITOR_TS->>AUDITOR_RP: return transparent statement 3
+          AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 3
+          AUDITOR_TS-->>AUDITOR_TS: register statement 3, make receipt
+          AUDITOR_TS->>CSP_RP: return transparent statement 3
           CUSTOMER_RP->>AUDITOR_TS: retrieve measurement statements
           AUDITOR_TS->>CUSTOMER_RP: return measurement statements
-          CUSTOMER_RP->>CUSTOMER_GRC: push measurements to metrics service for customer dashboard 
+          CUSTOMER_RP->>CUSTOMER_GRC: push measurements to customer dashboard 

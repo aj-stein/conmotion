@@ -137,6 +137,12 @@ A Transparency Service for mutual monitoring of cloud service providers SHOULD i
 
 ### Flows
 
+#### Inventory Management Use Case Dataflow
+
+![](./use-case_inventory.png)
+
+#### Configuration Management Use Case Dataflow
+
 ## Terminology
 
 - [Adjacent Service]{#term-adjacent-service}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-5.1.4) [@scitt25].
