@@ -44,7 +44,7 @@ $(SITE_BUILD_DIR)/%.png: $(SITE_SRC_DIR)/%.mmd $(MERMAID_EXE)
 	# https://github.com/mermaid-js/mermaid-cli/issues/730#issuecomment-2408615110
 	$(MERMAID_EXE_WRAPPER) \
 		npx -p @mermaid-js/mermaid-cli \
-			mmdc -i $< -o $@ -b transparent
+			mmdc -i $< -o $@ -b transparent --scale 2
 
 tag:
 	sed -i'' "s|/develop|$(shell git rev-parse HEAD)|g" $(SITE_SRC_DIR)/architecture.md
