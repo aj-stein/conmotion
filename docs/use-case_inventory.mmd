@@ -1,0 +1,49 @@
+  sequenceDiagram
+          actor CSP_TS_STORE as CSP Adjacent Storage Service
+          actor CSP_TS_SEARCH as CSP Adjacent Search Service
+          actor CSP_TS as CSP Transparency Service
+          actor CSP_IMS as CSP Inventory Management System
+          actor CSP_RP as CSP Relying Party
+          actor AUDITOR_TS_STORE as Auditor Adjacent Storage Service
+          actor AUDITOR_TS_SEARCH as Auditor Adjacent Search Service
+          actor AUDITOR_TS as Auditor Transparency Service
+          actor AUDITOR_RP as Auditor Relying Party
+          actor AUDITOR_IMS as Auditor Inventory Monitoring System
+          actor CUSTOMER_RP as Customer Relying Party
+          actor CUSTOMER_GRC as Customer Risk Dashboard
+          CSP_IMS->>CSP_RP: send inventory update
+          CSP_RP->>CSP_TS_STORE: store inventory update
+          CSP_TS_STORE->>CSP_TS_SEARCH: push inventory update fields for querying
+          CSP_TS_STORE->>CSP_RP: return hash of inventory update
+          CSP_RP-->>CSP_RP: sign hash as inventory statement 1
+          CSP_RP->>CSP_TS: submit signed inventory statement 1
+          CSP_TS-->>CSP_TS: validate submitted statement 1
+          CSP_TS-->>CSP_TS: register statement 1, make receipt
+          CSP_TS->>CSP_RP: return transparent statement 1
+          CSP_RP->>AUDITOR_TS: submit signed statement 1
+          AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 1
+          AUDITOR_TS-->>AUDITOR_TS: register statement 1, make receipt
+          AUDITOR_TS->>CSP_RP: return transparent statement 1
+          AUDITOR_IMS->>AUDITOR_RP: submit inventory update 2 not reported by CSP
+          AUDITOR_RP->>AUDITOR_TS_STORE: store inventory update 2
+          AUDITOR_TS_STORE->>AUDITOR_TS_SEARCH: push inventory update 2 fields for querying          
+          AUDITOR_TS_STORE->>AUDITOR_RP: return hash of inventory update 2
+          AUDITOR_RP-->>AUDITOR_RP: sign hash as inventory statement 2
+          AUDITOR_RP->>AUDITOR_TS: submit signed statement 2
+          AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 2
+          AUDITOR_TS-->>AUDITOR_TS: register statement 2, make receipt
+          AUDITOR_TS->>CSP_RP: return transparent statement 2
+          AUDITOR_RP->>AUDITOR_TS: read last statements (1, 2)
+          AUDITOR_RP-->>AUDITOR_RP: check for missing CSP inventory statements
+          AUDITOR_RP->>CSP_TS_SEARCH: query to confirm missing inventory
+          CSP_TS_SEARCH->>CSP_TS_STORE: query for matching inventory
+          CSP_TS_STORE->>CSP_TS_SEARCH: return matching inventory
+          CSP_TS_SEARCH->>AUDITOR_RP: return matching inventory
+          AUDITOR_RP-->>AUDITOR_RP: sign measurement statement 3
+          AUDITOR_RP->>AUDITOR_TS: submit signed statement 3
+          AUDITOR_TS-->>AUDITOR_TS: validate submitted statement 3
+          AUDITOR_TS-->>AUDITOR_TS: register statement 3, make receipt
+          AUDITOR_TS->>CSP_RP: return transparent statement 3
+          CUSTOMER_RP->>AUDITOR_TS: retrieve measurement statements
+          AUDITOR_TS->>CUSTOMER_RP: return measurement statements
+          CUSTOMER_RP->>CUSTOMER_GRC: push measurements to customer dashboard

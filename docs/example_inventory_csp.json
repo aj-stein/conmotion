@@ -1,0 +1,52 @@
+{
+  "message": "inventory new",
+  "time": 1752469463715,
+  "severity": "Informational",
+  "resources": [
+    {
+      "data": "RXhhbXBsZSBwYXlsb2FkCg==",
+      "name": "Example Instance Codename 1",
+      "owner": {
+        "name": "Cloud Service Provider Codename",
+        "type": "Unknown",
+        "uid": "f2c42f77-d7b9-4efd-aeee-e05be36fc0cb",
+        "type_id": 0
+      },
+      "type": "Example Instance Type Codename",
+      "ip": "4.3.2.1",
+      "uid": "022664f6-6070-11f0-8d17-6aae7c2d1fdb"
+    }
+  ],
+  "category_uid": 5,
+  "activity_id": 1,
+  "type_uid": 502301,
+  "type_name": "Cloud Resources Inventory Info: Log",
+  "category_name": "Discovery",
+  "class_uid": 5023,
+  "class_name": "Cloud Resources Inventory Info",
+  "timezone_offset": 26,
+  "activity_name": "Log",
+  "severity_id": 4,
+  "status_code": "accepted",
+  "status_detail": "no determination made new inventory created",
+  "status_id": 0,
+  "metadata": {
+    "version": "1.5.0",
+    "product": {
+      "name": "conmotion",
+      "version": "0.1.0-alpha",
+      "uid": "264aff4e-18ce-4c10-a670-114fc9c5e3c1",
+      "feature": {
+        "name": "mutual-monitoring_inventory",
+        "version": "0.1.0-alpha",
+        "uid": "dbd909a3-4721-4811-b54b-0d13f318ebb5"
+      },
+      "lang": "en",
+      "cpe_name": "cpe:2.3:a:aj-stein:conmotion:0.1.0:alpha:*:*:*:*:*:*",
+      "vendor_name": "github.com/aj-stein"
+    },
+    "profiles": [
+      "cloud"
+    ]
+  }  
+}
