@@ -6,6 +6,8 @@ SITE_SRC_DIR := docs
 SITE_BUILD_DIR := build
 DIAGRAM_IN_FILES := $(wildcard $(SITE_SRC_DIR)/*.mmd)
 DIAGRAM_OUT_FILES := $(patsubst $(SITE_SRC_DIR)/%.mmd, $(SITE_BUILD_DIR)/%.png, $(DIAGRAM_IN_FILES))
+OCSF_IN_FILES := $(wildcard $(SITE_SRC_DIR)/*.json)
+OCSF_OUT_FILES := $(patsubst $(SITE_SRC_DIR)/%.json, $(SITE_BUILD_DIR)/%.json, $(OCSF_IN_FILES))
 WEBPAGE_IN_FILES := $(wildcard $(SITE_SRC_DIR)/*.md)
 WEBPAGE_OUT_FILES := $(patsubst $(SITE_SRC_DIR)/%.md, $(SITE_BUILD_DIR)/%.html, $(WEBPAGE_IN_FILES))
 CITATION_STYLE := vendor/csl/apa-6th-edition.csl
@@ -31,7 +33,10 @@ $(SITE_BUILD_DIR)/%.pdf: $(SITE_SRC_DIR)/%.md $(REFS_FILE)
 		--citeproc \
 		--csl $(CITATION_STYLE)
 
-$(SITE_BUILD_DIR)/%.html: $(SITE_SRC_DIR)/%.md $(DIAGRAM_OUT_FILES) $(REFS_FILE)
+$(SITE_BUILD_DIR)/%.json: $(SITE_SRC_DIR)/%.json
+	cp $< $@
+
+$(SITE_BUILD_DIR)/%.html: $(SITE_SRC_DIR)/%.md $(DIAGRAM_OUT_FILES) $(OCSF_OUT_FILES) $(REFS_FILE)
 	pandoc $< -o $@ \
 		--resource-path $(SITE_BUILD_DIR) \
 		--bibliography $(REFS_FILE) \
@@ -51,7 +56,7 @@ tag:
 
 render: $(DIAGRAM_OUT_FILES)
 
-publish: $(WEBPAGE_OUT_FILES)
+publish: $(WEBPAGE_OUT_FILES) $(OCSF_OUT_FILES)
 
 convert: $(SITE_BUILD_DIR)/architecture.pdf
 
