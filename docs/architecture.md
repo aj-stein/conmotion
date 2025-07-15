@@ -2,11 +2,11 @@
 
 **Author:** [A.J. Stein](mailto:astein38@gatech.edu)
 <br/>
-**Version:** [7dd0d317fdb3e0d8ed99657efb34d1c3efe02fa2](https://github.com/aj-stein/conmotion/tree/7dd0d317fdb3e0d8ed99657efb34d1c3efe02fa2)
+**Version:** [/develop](https://github.com/aj-stein/conmotion/tree//develop)
 <br/>
-**Modified at:** 2025-06-09
+**Modified at:** 2025-07-15
 
-_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree/7dd0d317fdb3e0d8ed99657efb34d1c3efe02fa2) generated this copy of the specification, supporting documentation, and related code. You can [click this link](./architecture.pdf) to download this specification as a PDF document._
+_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree//develop) generated this copy of the specification, supporting documentation, and related code. You can [click this link](./architecture.pdf) to download this specification as a PDF document._
 
 ## Abstract
 
