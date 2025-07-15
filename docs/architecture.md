@@ -139,9 +139,13 @@ A Transparency Service for mutual monitoring of cloud service providers SHOULD i
 
 #### Inventory Management Use Case Dataflow
 
+Below is a non-normative dataflow diagram identifying recommended steps for an auditor to monitor a cloud service provider and detect inventory not reported by the provider's inventory management system using the Transparency Log and Adjacent Services.
+
 ![](./use-case_inventory.png)
 
 #### Configuration Management Use Case Dataflow
+
+Below is a non-normative dataflow diagram identifying recommended steps for an auditor to monitor a cloud service provider and detect configuration management updates not reported by the provider's configuration management system using the Transparency Log and Adjacent Services.
 
 ![](./use-case_configuration.png)
 
@@ -182,5 +186,252 @@ A Transparency Service for mutual monitoring of cloud service providers SHOULD i
 - [Verifiable Data Structure]{#term-vds}: This document uses the normative definition from [the IETF SCITT Architecture](https://www.ietf.org/archive/id/draft-ietf-scitt-architecture-12.html#section-3-4.38.1) [@scitt25].
 
 ## Appendix
+
+### Example Statements
+
+#### Inventory Management Records
+
+Below are non-normative example inventory management payloads in the OCSF format. Per the [Monitoring System Inventory Use Case](#monitoring-system-inventory) and [use case dataflow](#inventory-management-use-case-dataflow), each payload represents one inventory management record a CSP, or monitoring auditor, will hash and append its signed hashed to the Append-Only Log.
+
+[`example_inventory_csp.json`](./example_inventory_csp.json):
+
+```json
+{
+  "message": "inventory new",
+  "time": 1752469463715,
+  "severity": "Informational",
+  "resources": [
+    {
+      "data": "RXhhbXBsZSBwYXlsb2FkCg==",
+      "name": "Example Instance Codename 1",
+      "owner": {
+        "name": "Cloud Service Provider Codename",
+        "type": "Unknown",
+        "uid": "f2c42f77-d7b9-4efd-aeee-e05be36fc0cb",
+        "type_id": 0
+      },
+      "type": "Example Instance Type Codename",
+      "ip": "4.3.2.1",
+      "uid": "022664f6-6070-11f0-8d17-6aae7c2d1fdb"
+    }
+  ],
+  "category_uid": 5,
+  "activity_id": 1,
+  "type_uid": 502301,
+  "type_name": "Cloud Resources Inventory Info: Log",
+  "category_name": "Discovery",
+  "class_uid": 5023,
+  "class_name": "Cloud Resources Inventory Info",
+  "timezone_offset": 26,
+  "activity_name": "Log",
+  "severity_id": 4,
+  "status_code": "accepted",
+  "status_detail": "no determination made new inventory created",
+  "status_id": 0,
+  "metadata": {
+    "version": "1.5.0",
+    "product": {
+      "name": "conmotion",
+      "version": "0.1.0-alpha",
+      "uid": "264aff4e-18ce-4c10-a670-114fc9c5e3c1",
+      "feature": {
+        "name": "mutual-monitoring_inventory",
+        "version": "0.1.0-alpha",
+        "uid": "dbd909a3-4721-4811-b54b-0d13f318ebb5"
+      },
+      "lang": "en",
+      "cpe_name": "cpe:2.3:a:aj-stein:conmotion:0.1.0:alpha:*:*:*:*:*:*",
+      "vendor_name": "github.com/aj-stein"
+    },
+    "profiles": [
+      "cloud"
+    ]
+  }  
+}
+```
+
+[`example_inventory_auditor.json`](./example_inventory_auditor.json)
+
+```json
+{
+  "message": "inventory new",
+  "time": 1752469463715,
+  "severity": "Informational",
+  "resources": [
+    {
+      "data": "RXhhbXBsZSBwYXlsb2FkCg==",
+      "name": "Example Instance Codename 2",
+      "owner": {
+        "name": "Cloud Service Provider Codename",
+        "type": "Unknown",
+        "uid": "703539e3-df7c-4252-ba51-b3240c26ba2b",
+        "type_id": 0
+      },
+      "type": "Example Instance Type Codename",
+      "ip": "1.2.3.4",
+      "uid": "1a4c6228-a956-4244-a77e-3aa29c98c4c4"
+    }
+  ],
+  "category_uid": 5,
+  "activity_id": 1,
+  "type_uid": 502301,
+  "type_name": "Cloud Resources Inventory Info: Log",
+  "category_name": "Discovery",
+  "class_uid": 5023,
+  "class_name": "Cloud Resources Inventory Info",
+  "timezone_offset": 26,
+  "activity_name": "Log",
+  "severity_id": 4,
+  "status_code": "accepted",
+  "status_detail": "no determination made new inventory created",
+  "status_id": 0,
+  "metadata": {
+    "version": "1.5.0",
+    "product": {
+      "name": "conmotion",
+      "version": "0.1.0-alpha",
+      "uid": "264aff4e-18ce-4c10-a670-114fc9c5e3c1",
+      "feature": {
+        "name": "mutual-monitoring_inventory",
+        "version": "0.1.0-alpha",
+        "uid": "dbd909a3-4721-4811-b54b-0d13f318ebb5"
+      },
+      "lang": "en",
+      "cpe_name": "cpe:2.3:a:aj-stein:conmotion:0.1.0:alpha:*:*:*:*:*:*",
+      "vendor_name": "github.com/aj-stein"
+    },
+    "profiles": [
+      "cloud"
+    ]
+  }  
+}
+```
+
+#### Inventory Management Measurement
+
+Below are non-normative example inventory management measurement payloads in the OCSF format. Per the [Monitoring System Inventory Use Case](#monitoring-system-inventory) and [use case dataflow](#inventory-management-use-case-dataflow), the payload represents one inventory management measurement record for an auditor to hash and append its signed hashed to the Append-Only Log. Given the [non-normative inventory management record examples above](#inventory-management-records) and a measurement interval of the cloud service from the epoch of first report to present, the `impact_score` of `50` indicates the auditor monitored a CSP and detectected 1/2 systems not in the cloud provider's official inventory.
+
+[](./example_inventory-measurement_auditor.json)
+
+```json
+{
+  "message": "inventory management metric since epoch",
+  "status": "Updated",
+  "time": 1752473191,
+  "severity": "Informational",
+  "severity_id": 4,
+  "impact_id": 0,
+  "impact_score": 50,
+  "status_code": "dec",
+  "status_detail": "constructed screens icon",
+  "status_id": 1,  
+  "resources": [
+        {
+      "data": "RXhhbXBsZSBwYXlsb2FkCg==",
+      "name": "Example Instance Codename 1",
+      "owner": {
+        "name": "Cloud Service Provider Codename",
+        "type": "Unknown",
+        "uid": "f2c42f77-d7b9-4efd-aeee-e05be36fc0cb",
+        "type_id": 0
+      },
+      "type": "Example Instance Type Codename",
+      "ip": "4.3.2.1",
+      "uid": "022664f6-6070-11f0-8d17-6aae7c2d1fdb"
+    },
+        {
+      "data": "RXhhbXBsZSBwYXlsb2FkCg==",
+      "name": "Example Instance Codename 2",
+      "owner": {
+        "name": "Cloud Service Provider Codename",
+        "type": "Unknown",
+        "uid": "703539e3-df7c-4252-ba51-b3240c26ba2b",
+        "type_id": 0
+      },
+      "type": "Example Instance Type Codename",
+      "ip": "1.2.3.4",
+      "uid": "1a4c6228-a956-4244-a77e-3aa29c98c4c4"
+    }
+  ],
+  "category_uid": 2,
+  "activity_id": 1,
+  "type_uid": 200401,
+  "type_name": "Detection Finding: Update",
+  "category_name": "Findings",
+  "class_uid": 2004,
+  "class_name": "Detection Finding",
+  "timezone_offset": 2,
+  "remediation": {
+    "desc": "fairfield revelation compute"
+  },
+  "activity_name": "Update",
+  "cloud": {
+    "cloud_partition": "Example CSP Cloud Partition",
+    "provider": "Example CSP Codename",
+    "region": "Example CSP Region",
+    "zone": "Example Zone"
+  },
+  "confidence": "High",
+  "confidence_id": 3,
+  "evidences": [
+    {
+      "url": {
+        "version": "1.5.0",
+        "url": {
+          "port": 443,
+          "scheme": "https",
+          "path": "/entries/4869fa3b2d9f4af5bd08986af850e12b1f4268fd1a6f6f8ebbfb74a1f5d55221",
+          "hostname": "ts.example-auditor.com",
+          "category_ids": [
+            66
+          ],
+          "resource_type": "transparency log inventory",
+          "url_string": "https://ts.example-auditor.com//entries/4869fa3b2d9f4af5bd08986af850e12b1f4268fd1a6f6f8ebbfb74a1f5d55221"
+        }
+      }
+    },
+        {
+      "url": {
+        "version": "1.5.0",
+        "url": {
+          "port": 443,
+          "scheme": "https",
+          "path": "/entries/53baec839d639ce474876b81872ec492a72672b95dd8b9b85799447d30dad757",
+          "hostname": "ts.example-auditor.com",
+          "category_ids": [
+            66
+          ],
+          "resource_type": "transparency log inventory",
+          "url_string": "https://ts.example-auditor.com//entries/53baec839d639ce474876b81872ec492a72672b95dd8b9b85799447d30dad757"
+        }
+      }
+    }  
+  ],
+  "metadata": {
+    "version": "1.5.0",
+    "product": {
+      "name": "conmotion",
+      "version": "0.1.0-alpha",
+      "uid": "264aff4e-18ce-4c10-a670-114fc9c5e3c1",
+      "feature": {
+        "name": "mutual-monitoring_inventory",
+        "version": "0.1.0-alpha",
+        "uid": "dbd909a3-4721-4811-b54b-0d13f318ebb5"
+      },
+      "lang": "en",
+      "cpe_name": "cpe:2.3:a:aj-stein:conmotion:0.1.0:alpha:*:*:*:*:*:*",
+      "vendor_name": "github.com/aj-stein"
+    },
+    "profiles": [
+      "cloud"
+    ],
+    "log_name": "green_hurricane_wizard",
+    "log_provider": "ts.example-auditor.com",
+    "log_version": "2025h1",
+    "original_time": "2025-07-14T02:03:58Z",
+    "tenant_uid": "c950c785-a710-4dc0-a170-05344df33f9e"
+  }  
+}
+```
 
 ### References
