@@ -1,11 +1,12 @@
 architecture-beta
-    group provider(cloud)[Cloud Infrastructure Provider]
+    group provider(cloud)[Transparency Service Operator]
 
     service provider_storage(disk)[Storage Service] in provider
     service provider_tscore(server)[Transparency Service] in provider
     service provider_search(server)[Search Service] in provider
     service provider_rp(server)[Relying Party Client] in provider
 
-    provider_tscore:T -- L:provider_storage
-    provider_tscore:L -- R:provider_search
+    provider_storage:L -- R:provider_search
     provider_tscore:R -- L:provider_rp
+    provider_storage:L -- R:provider_rp
+    provider_search:R -- R:provider_rp
