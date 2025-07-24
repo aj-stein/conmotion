@@ -2,11 +2,11 @@
 
 **Author:** [A.J. Stein](mailto:astein38@gatech.edu)
 <br/>
-**Version:** [/develop](https://github.com/aj-stein/conmotion/tree//develop)
+**Version:** [8d40be1a21a4a6c99fd3c9b4b4a7f22f55556ac9](https://github.com/aj-stein/conmotion/tree/8d40be1a21a4a6c99fd3c9b4b4a7f22f55556ac9)
 <br/>
 **Modified at:** 2025-07-15
 
-_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree//develop) generated this copy of the specification, supporting documentation, and related code. You can [click this link](./architecture.pdf) to download this specification as a PDF document._
+_The source code from [github.com/aj-stein/conmotion at the linked commit](https://github.com/aj-stein/conmotion/tree/8d40be1a21a4a6c99fd3c9b4b4a7f22f55556ac9) generated this copy of the specification, supporting documentation, and related code. You can [click this link](./architecture.pdf) to download this specification as a PDF document._
 
 ## Abstract
 
@@ -132,8 +132,6 @@ Per [Appendix B of the current draft of the IETF SCITT Architecture](https://www
 A Transparency Service MAY implement an Adjacent Service for Search. This Adjacent Service will implement an interface to a query API. This interface MAY allow Relying Parties to query the Transparency Service for the Entry ID, Registration Policy, Issuer key ID, Subject and/or additional key-value tuples related to the specific payloads of a Signed Statement or Receipt. The Adjacent Service MAY also implement a similar ability for authenticated and authorized Relying Parties to query associated Artifacts given the hash or other properties of the Artifact derived from the Signed Statement or Receipt.
 
 A Transparency Service for mutual monitoring of cloud service providers SHOULD implement this service.
-
-### Actors and Roles
 
 ### Flows
 
